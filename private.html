@@ -1,0 +1,3537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Job Guidance Portal | GovCareer Navigator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --secondary-blue: #00509E;
+            --accent-blue: #0066CC;
+            --light-blue: #E6F0FF;
+            --dark-gray: #1A1A1A;
+            --medium-gray: #4A4A4A;
+            --light-gray: #F8FAFF;
+            --white: #FFFFFF;
+            --success: #059669;
+            --warning: #F59E0B;
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --green: #10B981;
+            --border-radius: 16px;
+            --shadow: 0 8px 30px rgba(0, 51, 102, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 51, 102, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f5ff 100%);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 51, 102, 0.08);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+            position: relative;
+        }
+
+        .law-cap {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #FFD700;
+            color: var(--primary-blue);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            border: 2px solid var(--white);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--medium-gray);
+            font-weight: 500;
+            margin-top: -3px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .back-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .dashboard-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+        }
+
+        .dashboard-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 51, 102, 0.25);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 100px auto 60px;
+            padding: 0 5%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--secondary-blue));
+            border-radius: 2px;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .branch-selection {
+            display: block;
+        }
+
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .branch-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 35px 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        .branch-card:nth-child(1) { animation-delay: 0.1s; }
+        .branch-card:nth-child(2) { animation-delay: 0.2s; }
+        .branch-card:nth-child(3) { animation-delay: 0.3s; }
+        .branch-card:nth-child(4) { animation-delay: 0.4s; }
+        .branch-card:nth-child(5) { animation-delay: 0.5s; }
+        .branch-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .branch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-blue);
+        }
+
+        .branch-card.selected {
+            border-color: var(--accent-blue);
+            background: linear-gradient(135deg, rgba(230, 240, 255, 0.3), rgba(255, 255, 255, 0.9));
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.2);
+        }
+
+        .branch-card.selected::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--secondary-blue));
+        }
+
+        .branch-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: var(--white);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .branch-card:hover .branch-icon {
+            transform: scale(1.1);
+        }
+
+        .branch-icon.cse { background: linear-gradient(135deg, var(--purple), #8B5CF6); }
+        .branch-icon.ece { background: linear-gradient(135deg, var(--pink), #EC4899); }
+        .branch-icon.eee { background: linear-gradient(135deg, var(--orange), #D97706); }
+        .branch-icon.mechanical { background: linear-gradient(135deg, var(--red), #DC2626); }
+        .branch-icon.civil { background: linear-gradient(135deg, var(--green), #059669); }
+        .branch-icon.it { background: linear-gradient(135deg, var(--accent-blue), var(--secondary-blue)); }
+
+        .branch-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+        }
+
+        .branch-fullname {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .branch-description {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .branch-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .specialization-job-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .selection-header {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .selection-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .current-branch {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .branch-display {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .change-branch-btn {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .change-branch-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 15px;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            background: var(--light-blue);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--medium-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            border-color: var(--accent-blue);
+        }
+
+        .specializations-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-blue);
+        }
+
+        .specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .specialization-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialization-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--secondary-blue));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .specialization-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.1);
+        }
+
+        .specialization-card:hover::before {
+            opacity: 1;
+        }
+
+        .specialization-card.selected {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(255, 255, 255, 0.9));
+            border-color: var(--accent-blue);
+        }
+
+        .specialization-card.selected::before {
+            opacity: 1;
+        }
+
+        .specialization-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--secondary-blue));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .specialization-name {
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .specialization-type {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--light-blue);
+            color: var(--accent-blue);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .job-listings-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .job-listings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .job-listings-title {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+        }
+
+        .job-listings-title span {
+            color: var(--accent-blue);
+        }
+
+        .job-count {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .job-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .job-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--secondary-blue));
+            opacity: 0.8;
+        }
+
+        .job-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            background: var(--light-blue);
+            color: var(--accent-blue);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            padding-right: 80px;
+        }
+
+        .job-company {
+            color: var(--medium-gray);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .job-salary {
+            color: var(--success);
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .skill-tag {
+            padding: 5px 12px;
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--accent-blue);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .view-details-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .view-details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 51, 102, 0.2);
+        }
+
+        .job-details-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-header {
+            padding: 30px 40px 20px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-gray));
+            color: var(--white);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            max-width: 80%;
+        }
+
+        .modal-subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .details-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .details-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .details-list {
+            list-style: none;
+        }
+
+        .details-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .details-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .interview-questions li::before {
+            content: '?';
+            color: var(--accent-blue);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .skill-item {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 5px;
+        }
+
+        .skill-level {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+        }
+
+        .coding-problems {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .coding-problem {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 102, 204, 0.2);
+            margin-bottom: 25px;
+        }
+
+        .problem-title {
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .problem-description {
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .code-snippet {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .main-container {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .branches-grid, .job-cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .specializations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .page-title {
+                font-size: 2.4rem;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 5%;
+            }
+            
+            .main-container {
+                margin-top: 150px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .selection-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .job-listings-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .modal-body {
+                padding: 25px;
+            }
+            
+            .modal-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .branch-card, .specializations-container, .job-listings-container {
+                padding: 25px 20px;
+            }
+            
+            .branch-name {
+                font-size: 1.5rem;
+            }
+            
+            .job-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-header {
+                padding: 25px 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-compass"></i>
+                <div class="law-cap">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+            <div>
+                <div class="logo-text">GovCareer Navigator</div>
+                <div class="logo-subtitle">Private Job Guidance Portal</div>
+            </div>
+        </a>
+        
+        <div class="nav-actions">
+            <button class="nav-btn back-btn" id="backBtn" style="display: none;">
+                <i class="fas fa-arrow-left"></i>
+                Back to Branches
+            </button>
+            <button class="nav-btn dashboard-btn" id="dashboardBtn">
+                <i class="fas fa-tachometer-alt"></i>
+                My Dashboard
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Private Job Guidance Portal</h1>
+            <p class="page-subtitle">Discover tailored career opportunities, required skills, and preparation guidance for your engineering field in the private sector</p>
+        </div>
+
+        <!-- Branch Selection -->
+        <div class="branch-selection" id="branchSelection">
+            <div class="branches-grid" id="branchesGrid">
+                <!-- Branches will be dynamically loaded -->
+            </div>
+        </div>
+
+        <!-- Specialization & Job Section -->
+        <div class="specialization-job-section" id="specializationJobSection">
+            <!-- Selection Header -->
+            <div class="selection-header">
+                <div class="selection-info">
+                    <div class="current-branch">
+                        <div id="selectedBranchIcon" class="branch-icon cse">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div>
+                            <div class="branch-display" id="selectedBranchName">Computer Science & Engineering</div>
+                            <button class="change-branch-btn" id="changeBranchBtn">
+                                <i class="fas fa-exchange-alt"></i> Change Branch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-filter">
+                    <button class="category-btn active" data-category="all">All Roles</button>
+                    <button class="category-btn" data-category="coding">Coding Jobs</button>
+                    <button class="category-btn" data-category="non-coding">Non-Coding Jobs</button>
+                </div>
+            </div>
+
+            <!-- Specializations -->
+            <div class="specializations-container">
+                <h3 class="section-title"><i class="fas fa-layer-group"></i> Select Specialization</h3>
+                <div class="specializations-grid" id="specializationsGrid">
+                    <!-- Specializations will be dynamically loaded -->
+                </div>
+            </div>
+
+            <!-- Job Listings -->
+            <div class="job-listings-container" id="jobListingsContainer">
+                <div class="job-listings-header">
+                    <h2 class="job-listings-title">Job Roles for <span id="currentSpecialization">All Specializations</span></h2>
+                    <div class="job-count" id="jobCount">0 Jobs Found</div>
+                </div>
+
+                <div class="job-cards-grid" id="jobCardsGrid">
+                    <!-- Job cards will be dynamically loaded -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Job Details Modal -->
+    <div class="job-details-modal" id="jobDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title" id="modalJobTitle">Job Title</h2>
+                <p class="modal-subtitle" id="modalJobCompany">Company Name</p>
+            </div>
+            
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Storage
+        let selectedBranch = null;
+        let selectedCategory = 'all';
+        let selectedSpecialization = null;
+
+        // Comprehensive Data
+        const branchData = {
+            cse: {
+                name: "Computer Science & Engineering",
+                icon: "fas fa-laptop-code",
+                color: "#8B5CF6",
+                description: "Software development, algorithms, AI/ML, cybersecurity, and computer systems",
+                specializations: [
+                    { id: "ai-ml", name: "AI & Machine Learning", icon: "fas fa-brain", type: "coding" },
+                    { id: "data-science", name: "Data Science", icon: "fas fa-chart-line", type: "coding" },
+                    { id: "cybersecurity", name: "Cyber Security", icon: "fas fa-shield-alt", type: "both" },
+                    { id: "cloud-computing", name: "Cloud Computing", icon: "fas fa-cloud", type: "both" },
+                    { id: "devops", name: "DevOps", icon: "fas fa-code-branch", type: "coding" },
+                    { id: "software-eng", name: "Software Engineering", icon: "fas fa-code", type: "coding" },
+                    { id: "iot", name: "Internet of Things", icon: "fas fa-network-wired", type: "both" },
+                    { id: "fullstack", name: "Full Stack Development", icon: "fas fa-layer-group", type: "coding" },
+                    { id: "mobile-dev", name: "Mobile Development", icon: "fas fa-mobile-alt", type: "coding" },
+                    { id: "game-dev", name: "Game Development", icon: "fas fa-gamepad", type: "coding" },
+                    { id: "blockchain", name: "Blockchain", icon: "fas fa-link", type: "coding" },
+                    { id: "qa-testing", name: "QA & Testing", icon: "fas fa-vial", type: "non-coding" }
+                ]
+            },
+            ece: {
+                name: "Electronics & Communication Engineering",
+                icon: "fas fa-microchip",
+                color: "#EC4899",
+                description: "Electronics design, communication systems, VLSI, embedded systems",
+                specializations: [
+                    { id: "vlsi", name: "VLSI Design", icon: "fas fa-microchip", type: "both" },
+                    { id: "embedded", name: "Embedded Systems", icon: "fas fa-microchip", type: "both" },
+                    { id: "signal-processing", name: "Signal Processing", icon: "fas fa-wave-square", type: "both" },
+                    { id: "communication", name: "Communication Systems", icon: "fas fa-satellite", type: "both" },
+                    { id: "iot-ece", name: "IoT Hardware", icon: "fas fa-microchip", type: "both" }
+                ]
+            },
+            eee: {
+                name: "Electrical & Electronics Engineering",
+                icon: "fas fa-bolt",
+                color: "#F59E0B",
+                description: "Power systems, electrical machinery, control systems, renewable energy",
+                specializations: [
+                    { id: "power-systems", name: "Power Systems", icon: "fas fa-bolt", type: "non-coding" },
+                    { id: "control-systems", name: "Control Systems", icon: "fas fa-cogs", type: "both" },
+                    { id: "renewable-energy", name: "Renewable Energy", icon: "fas fa-solar-panel", type: "non-coding" },
+                    { id: "automation", name: "Industrial Automation", icon: "fas fa-robot", type: "both" }
+                ]
+            },
+            mechanical: {
+                name: "Mechanical Engineering",
+                icon: "fas fa-cogs",
+                color: "#EF4444",
+                description: "Design, manufacturing, thermal systems, automotive, aerospace",
+                specializations: [
+                    { id: "design", name: "Mechanical Design", icon: "fas fa-drafting-compass", type: "non-coding" },
+                    { id: "manufacturing", name: "Manufacturing", icon: "fas fa-industry", type: "non-coding" },
+                    { id: "automotive", name: "Automotive", icon: "fas fa-car", type: "non-coding" },
+                    { id: "aerospace", name: "Aerospace", icon: "fas fa-plane", type: "non-coding" },
+                    { id: "robotics-mech", name: "Robotics", icon: "fas fa-robot", type: "both" }
+                ]
+            },
+            civil: {
+                name: "Civil Engineering",
+                icon: "fas fa-hard-hat",
+                color: "#10B981",
+                description: "Infrastructure, construction, structural design, environmental engineering",
+                specializations: [
+                    { id: "structural", name: "Structural Engineering", icon: "fas fa-building", type: "non-coding" },
+                    { id: "construction", name: "Construction Management", icon: "fas fa-hard-hat", type: "non-coding" },
+                    { id: "environmental", name: "Environmental Engineering", icon: "fas fa-leaf", type: "non-coding" },
+                    { id: "transportation", name: "Transportation Engineering", icon: "fas fa-road", type: "non-coding" }
+                ]
+            },
+            it: {
+                name: "Information Technology",
+                icon: "fas fa-server",
+                color: "#0066CC",
+                description: "Networking, databases, cybersecurity, cloud computing, IT infrastructure",
+                specializations: [
+                    { id: "networking", name: "Networking", icon: "fas fa-network-wired", type: "both" },
+                    { id: "database", name: "Database Administration", icon: "fas fa-database", type: "both" },
+                    { id: "cyber-it", name: "Cyber Security", icon: "fas fa-shield-alt", type: "both" },
+                    { id: "cloud-it", name: "Cloud Architecture", icon: "fas fa-cloud", type: "coding" },
+                    { id: "it-support", name: "IT Support", icon: "fas fa-headset", type: "non-coding" }
+                ]
+            }
+        };
+
+        // Enhanced Job Data with minimum 5 jobs per specialization
+        const jobData = {
+            // CSE Jobs
+            "ai-ml": [
+                {
+                    id: "ml-engineer",
+                    title: "Machine Learning Engineer",
+                    company: "Google, Microsoft, Amazon, NVIDIA",
+                    salary: "₹18-45 LPA",
+                    skills: ["Python", "TensorFlow", "PyTorch", "ML Algorithms", "Data Analysis", "Statistics"],
+                    badge: "High Demand",
+                    type: "coding",
+                    description: "Design and implement machine learning models and systems for production environments."
+                },
+                {
+                    id: "data-scientist",
+                    title: "Data Scientist",
+                    company: "IBM, Accenture, TCS, Infosys",
+                    salary: "₹15-35 LPA",
+                    skills: ["Python", "R", "SQL", "Statistics", "Data Visualization", "Machine Learning"],
+                    badge: "High Growth",
+                    type: "coding",
+                    description: "Analyze complex datasets to extract insights and build predictive models."
+                },
+                {
+                    id: "ai-researcher",
+                    title: "AI Research Scientist",
+                    company: "OpenAI, DeepMind, Microsoft Research",
+                    salary: "₹20-50 LPA",
+                    skills: ["Deep Learning", "Research", "Mathematics", "Publications", "Python"],
+                    badge: "Research Focus",
+                    type: "coding",
+                    description: "Conduct cutting-edge research in artificial intelligence and machine learning."
+                },
+                {
+                    id: "nlp-engineer",
+                    title: "NLP Engineer",
+                    company: "Google, Facebook, Apple, Amazon",
+                    salary: "₹16-40 LPA",
+                    skills: ["Python", "NLP", "Transformers", "Deep Learning", "TensorFlow"],
+                    badge: "Specialized",
+                    type: "coding",
+                    description: "Develop natural language processing models for text analysis and generation."
+                },
+                {
+                    id: "computer-vision",
+                    title: "Computer Vision Engineer",
+                    company: "Tesla, Nvidia, Intel, Adobe",
+                    salary: "₹17-42 LPA",
+                    skills: ["Python", "OpenCV", "PyTorch", "Image Processing", "Deep Learning"],
+                    badge: "Growing Field",
+                    type: "coding",
+                    description: "Build computer vision systems for image and video analysis applications."
+                }
+            ],
+            "data-science": [
+                {
+                    id: "data-analyst",
+                    title: "Data Analyst",
+                    company: "Amazon, Flipkart, Zomato, Swiggy",
+                    salary: "₹10-25 LPA",
+                    skills: ["SQL", "Excel", "Tableau", "Statistics", "Python", "Data Visualization"],
+                    badge: "Entry Level",
+                    type: "coding",
+                    description: "Interpret data and provide actionable insights for business decisions."
+                },
+                {
+                    id: "business-analyst",
+                    title: "Business Analyst",
+                    company: "Deloitte, KPMG, PwC, EY",
+                    salary: "₹12-28 LPA",
+                    skills: ["SQL", "Excel", "Power BI", "Business Intelligence", "Communication"],
+                    badge: "Non-Tech",
+                    type: "non-coding",
+                    description: "Bridge gap between IT and business using data analytics."
+                },
+                {
+                    id: "data-engineer",
+                    title: "Data Engineer",
+                    company: "Uber, Airbnb, Spotify, Netflix",
+                    salary: "₹15-35 LPA",
+                    skills: ["Python", "SQL", "Hadoop", "Spark", "ETL", "AWS"],
+                    badge: "Backend Focus",
+                    type: "coding",
+                    description: "Design and build data pipelines and infrastructure for data processing."
+                },
+                {
+                    id: "bi-developer",
+                    title: "BI Developer",
+                    company: "TCS, Infosys, Wipro, Cognizant",
+                    salary: "₹11-26 LPA",
+                    skills: ["Power BI", "Tableau", "SQL", "Data Warehousing", "ETL"],
+                    badge: "Visualization",
+                    type: "coding",
+                    description: "Create business intelligence solutions and dashboards for decision making."
+                },
+                {
+                    id: "big-data-engineer",
+                    title: "Big Data Engineer",
+                    company: "IBM, Oracle, SAP, Accenture",
+                    salary: "₹16-38 LPA",
+                    skills: ["Hadoop", "Spark", "Kafka", "NoSQL", "Scala", "Java"],
+                    badge: "Big Data",
+                    type: "coding",
+                    description: "Handle large-scale data processing and distributed computing systems."
+                }
+            ],
+            "cybersecurity": [
+                {
+                    id: "security-analyst",
+                    title: "Security Analyst",
+                    company: "Cisco, Palo Alto, IBM Security",
+                    salary: "₹14-30 LPA",
+                    skills: ["Network Security", "Ethical Hacking", "SIEM", "Firewalls", "Linux"],
+                    badge: "High Demand",
+                    type: "both",
+                    description: "Protect computer systems and networks from cyber threats."
+                },
+                {
+                    id: "penetration-tester",
+                    title: "Penetration Tester",
+                    company: "EY, Deloitte, KPMG, PwC",
+                    salary: "₹15-32 LPA",
+                    skills: ["Ethical Hacking", "Kali Linux", "OWASP", "Network Protocols", "Python"],
+                    badge: "Red Team",
+                    type: "coding",
+                    description: "Simulate cyber attacks to identify security vulnerabilities."
+                },
+                {
+                    id: "security-architect",
+                    title: "Security Architect",
+                    company: "Microsoft, Amazon, IBM, Cisco",
+                    salary: "₹20-45 LPA",
+                    skills: ["Security Design", "Risk Assessment", "Compliance", "Cloud Security", "Architecture"],
+                    badge: "Senior Role",
+                    type: "both",
+                    description: "Design and implement comprehensive security solutions for organizations."
+                },
+                {
+                    id: "malware-analyst",
+                    title: "Malware Analyst",
+                    company: "McAfee, Symantec, Kaspersky, CrowdStrike",
+                    salary: "₹16-35 LPA",
+                    skills: ["Reverse Engineering", "Assembly", "Malware Analysis", "Forensics", "Python"],
+                    badge: "Specialized",
+                    type: "coding",
+                    description: "Analyze malicious software to understand threats and develop countermeasures."
+                },
+                {
+                    id: "cryptographer",
+                    title: "Cryptographer",
+                    company: "NSA, Google, Microsoft, IBM Research",
+                    salary: "₹18-40 LPA",
+                    skills: ["Cryptography", "Mathematics", "Algorithms", "Security Protocols", "C++"],
+                    badge: "Research",
+                    type: "coding",
+                    description: "Design and analyze cryptographic algorithms and security protocols."
+                }
+            ],
+            "cloud-computing": [
+                {
+                    id: "cloud-engineer",
+                    title: "Cloud Engineer",
+                    company: "Amazon AWS, Microsoft Azure, Google Cloud",
+                    salary: "₹15-35 LPA",
+                    skills: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Linux"],
+                    badge: "Cloud Native",
+                    type: "coding",
+                    description: "Design, deploy, and maintain cloud infrastructure and applications."
+                },
+                {
+                    id: "cloud-architect",
+                    title: "Cloud Architect",
+                    company: "Accenture, Infosys, TCS, Wipro",
+                    salary: "₹18-42 LPA",
+                    skills: ["Cloud Design", "Microservices", "Serverless", "Security", "Cost Optimization"],
+                    badge: "Design Role",
+                    type: "both",
+                    description: "Design cloud solutions and migration strategies for enterprises."
+                },
+                {
+                    id: "devops-engineer",
+                    title: "DevOps Engineer",
+                    company: "Netflix, Uber, Spotify, Adobe",
+                    salary: "₹16-38 LPA",
+                    skills: ["CI/CD", "Jenkins", "Docker", "Kubernetes", "AWS", "Python"],
+                    badge: "Automation",
+                    type: "coding",
+                    description: "Automate deployment, scaling, and monitoring of applications."
+                },
+                {
+                    id: "site-reliability",
+                    title: "Site Reliability Engineer",
+                    company: "Google, Facebook, Amazon, Microsoft",
+                    salary: "₹20-45 LPA",
+                    skills: ["Linux", "Networking", "Automation", "Monitoring", "Incident Management"],
+                    badge: "SRE",
+                    type: "coding",
+                    description: "Ensure system reliability, availability, and performance at scale."
+                },
+                {
+                    id: "cloud-security",
+                    title: "Cloud Security Engineer",
+                    company: "Palo Alto, CrowdStrike, Zscaler, Check Point",
+                    salary: "₹17-40 LPA",
+                    skills: ["Cloud Security", "IAM", "Compliance", "Firewalls", "Encryption"],
+                    badge: "Security",
+                    type: "both",
+                    description: "Implement and manage security controls in cloud environments."
+                }
+            ],
+            "devops": [
+                {
+                    id: "devops-engineer-main",
+                    title: "DevOps Engineer",
+                    company: "Amazon, Microsoft, Google, Netflix",
+                    salary: "₹16-38 LPA",
+                    skills: ["Docker", "Kubernetes", "Jenkins", "AWS", "Terraform", "Python"],
+                    badge: "Automation",
+                    type: "coding",
+                    description: "Bridge development and operations through automation and collaboration."
+                },
+                {
+                    id: "platform-engineer",
+                    title: "Platform Engineer",
+                    company: "Spotify, Uber, Airbnb, LinkedIn",
+                    salary: "₹18-40 LPA",
+                    skills: ["Kubernetes", "Helm", "CI/CD", "Monitoring", "Infrastructure as Code"],
+                    badge: "Platform",
+                    type: "coding",
+                    description: "Build and maintain internal developer platforms and tooling."
+                },
+                {
+                    id: "automation-engineer",
+                    title: "Automation Engineer",
+                    company: "TCS, Infosys, Wipro, HCL",
+                    salary: "₹12-28 LPA",
+                    skills: ["Python", "Ansible", "Chef", "Puppet", "Shell Scripting", "Git"],
+                    badge: "Scripting",
+                    type: "coding",
+                    description: "Automate infrastructure provisioning and configuration management."
+                },
+                {
+                    id: "release-engineer",
+                    title: "Release Engineer",
+                    company: "Adobe, Salesforce, Oracle, SAP",
+                    salary: "₹14-32 LPA",
+                    skills: ["CI/CD", "Jenkins", "GitLab", "Artifactory", "Release Management"],
+                    badge: "Deployment",
+                    type: "coding",
+                    description: "Manage and automate software release processes and deployments."
+                },
+                {
+                    id: "cloud-ops",
+                    title: "Cloud Operations Engineer",
+                    company: "IBM, Dell, HP, VMware",
+                    salary: "₹15-34 LPA",
+                    skills: ["Cloud Platforms", "Monitoring", "Incident Response", "Backup", "Disaster Recovery"],
+                    badge: "Operations",
+                    type: "both",
+                    description: "Monitor and maintain cloud infrastructure and applications."
+                }
+            ],
+            "software-eng": [
+                {
+                    id: "software-developer",
+                    title: "Software Developer",
+                    company: "Microsoft, Amazon, Google, Facebook",
+                    salary: "₹12-35 LPA",
+                    skills: ["Java", "Python", "JavaScript", "Data Structures", "Algorithms", "Git"],
+                    badge: "Core Role",
+                    type: "coding",
+                    description: "Design, develop, and maintain software applications and systems."
+                },
+                {
+                    id: "backend-developer",
+                    title: "Backend Developer",
+                    company: "Uber, Netflix, PayPal, Stripe",
+                    salary: "₹14-38 LPA",
+                    skills: ["Java", "Python", "Node.js", "REST APIs", "Databases", "Microservices"],
+                    badge: "Server Side",
+                    type: "coding",
+                    description: "Build server-side logic, databases, and APIs for web applications."
+                },
+                {
+                    id: "frontend-developer",
+                    title: "Frontend Developer",
+                    company: "Facebook, Instagram, Airbnb, Twitter",
+                    salary: "₹13-32 LPA",
+                    skills: ["JavaScript", "React", "Angular", "Vue.js", "HTML", "CSS"],
+                    badge: "UI/UX",
+                    type: "coding",
+                    description: "Create user interfaces and implement client-side functionality."
+                },
+                {
+                    id: "fullstack-developer",
+                    title: "Full Stack Developer",
+                    company: "Startups, Product Companies, Tech Firms",
+                    salary: "₹15-40 LPA",
+                    skills: ["JavaScript", "React", "Node.js", "MongoDB", "AWS", "Git"],
+                    badge: "End-to-End",
+                    type: "coding",
+                    description: "Handle both frontend and backend development of web applications."
+                },
+                {
+                    id: "systems-programmer",
+                    title: "Systems Programmer",
+                    company: "Intel, AMD, Qualcomm, Nvidia",
+                    salary: "₹16-42 LPA",
+                    skills: ["C", "C++", "Assembly", "Linux Kernel", "Device Drivers", "Debugging"],
+                    badge: "Low Level",
+                    type: "coding",
+                    description: "Develop low-level system software and hardware interfaces."
+                }
+            ],
+            "iot": [
+                {
+                    id: "iot-developer",
+                    title: "IoT Developer",
+                    company: "Samsung, Bosch, Siemens, Honeywell",
+                    salary: "₹12-30 LPA",
+                    skills: ["Python", "C++", "MQTT", "Raspberry Pi", "Sensors", "Cloud IoT"],
+                    badge: "Smart Devices",
+                    type: "coding",
+                    description: "Develop software for Internet of Things devices and systems."
+                },
+                {
+                    id: "embedded-iot",
+                    title: "Embedded IoT Engineer",
+                    company: "Intel, Texas Instruments, NXP, STMicro",
+                    salary: "₹13-32 LPA",
+                    skills: ["C", "C++", "RTOS", "Microcontrollers", "Wireless Protocols", "PCB Design"],
+                    badge: "Hardware",
+                    type: "coding",
+                    description: "Design and program embedded systems for IoT applications."
+                },
+                {
+                    id: "iot-architect",
+                    title: "IoT Solution Architect",
+                    company: "IBM, Microsoft, Amazon, Google",
+                    salary: "₹18-45 LPA",
+                    skills: ["System Design", "Cloud Platforms", "Security", "Protocols", "Data Analytics"],
+                    badge: "Architecture",
+                    type: "both",
+                    description: "Design end-to-end IoT solutions and system architectures."
+                },
+                {
+                    id: "iot-security",
+                    title: "IoT Security Specialist",
+                    company: "Cisco, Palo Alto, Fortinet, Check Point",
+                    salary: "₹16-38 LPA",
+                    skills: ["Network Security", "Encryption", "Device Security", "PKI", "Vulnerability Assessment"],
+                    badge: "Security",
+                    type: "both",
+                    description: "Secure IoT devices, networks, and data against cyber threats."
+                },
+                {
+                    id: "iot-data-analyst",
+                    title: "IoT Data Analyst",
+                    company: "GE, Siemens, Philips, Schneider Electric",
+                    salary: "₹14-35 LPA",
+                    skills: ["Python", "SQL", "Time Series", "Data Visualization", "Predictive Analytics"],
+                    badge: "Data",
+                    type: "coding",
+                    description: "Analyze data from IoT sensors and devices for insights."
+                }
+            ],
+            "fullstack": [
+                {
+                    id: "fullstack-developer-main",
+                    title: "Full Stack Developer",
+                    company: "Amazon, Microsoft, Google, Facebook",
+                    salary: "₹15-40 LPA",
+                    skills: ["JavaScript", "React", "Node.js", "MongoDB", "AWS", "Docker"],
+                    badge: "Popular Role",
+                    type: "coding",
+                    description: "Develop both client-side and server-side components of web applications."
+                },
+                {
+                    id: "mern-developer",
+                    title: "MERN Stack Developer",
+                    company: "Startups, Product Companies, Digital Agencies",
+                    salary: "₹14-36 LPA",
+                    skills: ["MongoDB", "Express.js", "React", "Node.js", "JavaScript", "Redux"],
+                    badge: "MERN",
+                    type: "coding",
+                    description: "Build full-stack applications using the MERN technology stack."
+                },
+                {
+                    id: "mean-developer",
+                    title: "MEAN Stack Developer",
+                    company: "Wipro, Infosys, TCS, Accenture",
+                    salary: "₹13-34 LPA",
+                    skills: ["MongoDB", "Express.js", "Angular", "Node.js", "TypeScript", "REST APIs"],
+                    badge: "MEAN",
+                    type: "coding",
+                    description: "Develop applications using the MEAN stack with Angular framework."
+                },
+                {
+                    id: "python-fullstack",
+                    title: "Python Full Stack Developer",
+                    company: "Uber, Netflix, Spotify, Pinterest",
+                    salary: "₹16-42 LPA",
+                    skills: ["Python", "Django", "Flask", "React", "PostgreSQL", "Docker"],
+                    badge: "Python",
+                    type: "coding",
+                    description: "Build full-stack applications using Python-based backend frameworks."
+                },
+                {
+                    id: "java-fullstack",
+                    title: "Java Full Stack Developer",
+                    company: "Banks, Enterprises, Large Corporations",
+                    salary: "₹14-38 LPA",
+                    skills: ["Java", "Spring Boot", "React", "MySQL", "Microservices", "AWS"],
+                    badge: "Enterprise",
+                    type: "coding",
+                    description: "Develop enterprise-grade full-stack applications using Java."
+                }
+            ],
+            "mobile-dev": [
+                {
+                    id: "android-developer",
+                    title: "Android Developer",
+                    company: "Google, Samsung, Xiaomi, OnePlus",
+                    salary: "₹12-35 LPA",
+                    skills: ["Java", "Kotlin", "Android SDK", "Material Design", "Firebase", "REST APIs"],
+                    badge: "Android",
+                    type: "coding",
+                    description: "Develop native Android applications for mobile devices."
+                },
+                {
+                    id: "ios-developer",
+                    title: "iOS Developer",
+                    company: "Apple, Uber, Airbnb, Spotify",
+                    salary: "₹14-40 LPA",
+                    skills: ["Swift", "Objective-C", "iOS SDK", "Xcode", "Core Data", "UIKit"],
+                    badge: "iOS",
+                    type: "coding",
+                    description: "Build native iOS applications for iPhone and iPad devices."
+                },
+                {
+                    id: "react-native",
+                    title: "React Native Developer",
+                    company: "Facebook, Instagram, Discord, Shopify",
+                    salary: "₹13-36 LPA",
+                    skills: ["JavaScript", "React Native", "Redux", "Native Modules", "APIs", "Firebase"],
+                    badge: "Cross-Platform",
+                    type: "coding",
+                    description: "Develop cross-platform mobile applications using React Native."
+                },
+                {
+                    id: "flutter-developer",
+                    title: "Flutter Developer",
+                    company: "Google, Alibaba, eBay, BMW",
+                    salary: "₹12-34 LPA",
+                    skills: ["Dart", "Flutter", "Firebase", "APIs", "State Management", "Widgets"],
+                    badge: "Flutter",
+                    type: "coding",
+                    description: "Build beautiful cross-platform apps using Google's Flutter framework."
+                },
+                {
+                    id: "mobile-architect",
+                    title: "Mobile Architect",
+                    company: "Amazon, Microsoft, Adobe, Salesforce",
+                    salary: "₹18-45 LPA",
+                    skills: ["System Design", "Performance", "Security", "Architecture Patterns", "CI/CD"],
+                    badge: "Architecture",
+                    type: "coding",
+                    description: "Design and oversee mobile application architecture and development."
+                }
+            ],
+            "game-dev": [
+                {
+                    id: "game-developer",
+                    title: "Game Developer",
+                    company: "EA, Ubisoft, Activision, Rockstar",
+                    salary: "₹12-35 LPA",
+                    skills: ["C++", "Unity", "Unreal Engine", "Game Physics", "3D Math", "AI"],
+                    badge: "Creative",
+                    type: "coding",
+                    description: "Design and develop video games for various platforms."
+                },
+                {
+                    id: "unity-developer",
+                    title: "Unity Developer",
+                    company: "Mobile Game Studios, AR/VR Companies",
+                    salary: "₹11-30 LPA",
+                    skills: ["C#", "Unity", "3D Graphics", "Shader Programming", "Game Physics", "UI"],
+                    badge: "Unity",
+                    type: "coding",
+                    description: "Create games and interactive experiences using Unity game engine."
+                },
+                {
+                    id: "unreal-developer",
+                    title: "Unreal Engine Developer",
+                    company: "AAA Game Studios, Film Industry",
+                    salary: "₹14-40 LPA",
+                    skills: ["C++", "Unreal Engine", "Blueprints", "3D Graphics", "VR/AR", "Networking"],
+                    badge: "Unreal",
+                    type: "coding",
+                    description: "Develop high-quality games using Unreal Engine 4/5."
+                },
+                {
+                    id: "gameplay-programmer",
+                    title: "Gameplay Programmer",
+                    company: "Nintendo, Sony, Microsoft Game Studios",
+                    salary: "₹13-36 LPA",
+                    skills: ["C++", "Game Mechanics", "AI Programming", "Physics", "Animation Systems"],
+                    badge: "Gameplay",
+                    type: "coding",
+                    description: "Implement game mechanics, character controls, and AI behaviors."
+                },
+                {
+                    id: "game-tools-developer",
+                    title: "Game Tools Developer",
+                    company: "Large Game Studios, Tech Companies",
+                    salary: "₹14-38 LPA",
+                    skills: ["Python", "C++", "UI Development", "Automation", "Pipeline Tools", "Plugins"],
+                    badge: "Tools",
+                    type: "coding",
+                    description: "Build tools and systems to improve game development workflows."
+                }
+            ],
+            "blockchain": [
+                {
+                    id: "blockchain-developer",
+                    title: "Blockchain Developer",
+                    company: "Coinbase, Binance, Ripple, ConsenSys",
+                    salary: "₹18-50 LPA",
+                    skills: ["Solidity", "Ethereum", "Smart Contracts", "Web3.js", "Node.js", "Cryptography"],
+                    badge: "High Pay",
+                    type: "coding",
+                    description: "Develop decentralized applications and smart contracts on blockchain."
+                },
+                {
+                    id: "solidity-developer",
+                    title: "Solidity Developer",
+                    company: "DeFi Projects, NFT Platforms, Crypto Startups",
+                    salary: "₹20-60 LPA",
+                    skills: ["Solidity", "Ethereum", "Smart Contracts", "Truffle", "Hardhat", "Testing"],
+                    badge: "Specialized",
+                    type: "coding",
+                    description: "Write and deploy secure smart contracts on Ethereum blockchain."
+                },
+                {
+                    id: "web3-developer",
+                    title: "Web3 Developer",
+                    company: "OpenSea, Uniswap, Aave, Compound",
+                    salary: "₹16-45 LPA",
+                    skills: ["JavaScript", "React", "Web3.js", "Ethers.js", "IPFS", "Metamask"],
+                    badge: "Frontend",
+                    type: "coding",
+                    description: "Build frontend interfaces for decentralized applications (dApps)."
+                },
+                {
+                    id: "blockchain-architect",
+                    title: "Blockchain Architect",
+                    company: "Enterprises, Banks, Government Projects",
+                    salary: "₹25-70 LPA",
+                    skills: ["System Design", "Consensus Algorithms", "Security", "Scalability", "Architecture"],
+                    badge: "Senior",
+                    type: "coding",
+                    description: "Design blockchain solutions and system architectures."
+                },
+                {
+                    id: "crypto-engineer",
+                    title: "Cryptographic Engineer",
+                    company: "Visa, Mastercard, JPMorgan, IBM",
+                    salary: "₹20-55 LPA",
+                    skills: ["Cryptography", "Zero-Knowledge Proofs", "MPC", "Privacy", "C++", "Rust"],
+                    badge: "Advanced",
+                    type: "coding",
+                    description: "Implement cryptographic protocols and privacy-preserving technologies."
+                }
+            ],
+            "qa-testing": [
+                {
+                    id: "qa-engineer",
+                    title: "QA Engineer",
+                    company: "Microsoft, Amazon, Google, Adobe",
+                    salary: "₹10-25 LPA",
+                    skills: ["Manual Testing", "Test Cases", "Bug Tracking", "JIRA", "Regression Testing", "Selenium"],
+                    badge: "Entry Level",
+                    type: "non-coding",
+                    description: "Test software applications to ensure quality and functionality."
+                },
+                {
+                    id: "test-automation",
+                    title: "Test Automation Engineer",
+                    company: "Netflix, Uber, PayPal, Salesforce",
+                    salary: "₹14-35 LPA",
+                    skills: ["Selenium", "Java", "Python", "TestNG", "JUnit", "CI/CD"],
+                    badge: "Automation",
+                    type: "coding",
+                    description: "Automate testing processes to improve efficiency and coverage."
+                },
+                {
+                    id: "performance-engineer",
+                    title: "Performance Test Engineer",
+                    company: "Banks, E-commerce, Social Media Platforms",
+                    salary: "₹15-38 LPA",
+                    skills: ["JMeter", "Load Testing", "Performance Monitoring", "APM Tools", "Scripting"],
+                    badge: "Performance",
+                    type: "both",
+                    description: "Test and optimize application performance under various loads."
+                },
+                {
+                    id: "sdet",
+                    title: "SDET (Software Development Engineer in Test)",
+                    company: "Amazon, Microsoft, Google, Facebook",
+                    salary: "₹16-40 LPA",
+                    skills: ["Programming", "Test Frameworks", "CI/CD", "Debugging", "System Design"],
+                    badge: "Technical",
+                    type: "coding",
+                    description: "Combine software development skills with testing expertise."
+                },
+                {
+                    id: "qa-manager",
+                    title: "QA Manager",
+                    company: "Large Enterprises, Product Companies",
+                    salary: "₹20-50 LPA",
+                    skills: ["Team Management", "Test Strategy", "Process Improvement", "Metrics", "Planning"],
+                    badge: "Management",
+                    type: "non-coding",
+                    description: "Lead QA teams and oversee testing processes and strategies."
+                }
+            ],
+            // ECE Jobs
+            "vlsi": [
+                {
+                    id: "vlsi-design-engineer",
+                    title: "VLSI Design Engineer",
+                    company: "Intel, AMD, Qualcomm, Texas Instruments",
+                    salary: "₹12-35 LPA",
+                    skills: ["Verilog", "VHDL", "Digital Design", "EDA Tools", "CMOS", "ASIC"],
+                    badge: "Core ECE",
+                    type: "both",
+                    description: "Design and verify integrated circuits using VLSI methodologies."
+                },
+                {
+                    id: "asic-design",
+                    title: "ASIC Design Engineer",
+                    company: "Nvidia, Broadcom, MediaTek, Apple",
+                    salary: "₹14-40 LPA",
+                    skills: ["ASIC Design", "Verilog", "SystemVerilog", "Timing Analysis", "Power Optimization"],
+                    badge: "ASIC",
+                    type: "coding",
+                    description: "Design Application-Specific Integrated Circuits for various applications."
+                },
+                {
+                    id: "physical-design",
+                    title: "Physical Design Engineer",
+                    company: "Samsung, TSMC, GlobalFoundries, Micron",
+                    salary: "₹13-38 LPA",
+                    skills: ["Place & Route", "Timing Closure", "Floorplanning", "Power Planning", "CTS"],
+                    badge: "Physical",
+                    type: "both",
+                    description: "Implement physical design of integrated circuits from RTL to GDSII."
+                },
+                {
+                    id: "verification-engineer",
+                    title: "Verification Engineer",
+                    company: "Intel, AMD, Nvidia, ARM",
+                    salary: "₹14-42 LPA",
+                    skills: ["SystemVerilog", "UVM", "Assertions", "Coverage", "Testbenches", "Debugging"],
+                    badge: "Verification",
+                    type: "coding",
+                    description: "Verify functionality and performance of chip designs before fabrication."
+                },
+                {
+                    id: "analog-design",
+                    title: "Analog Design Engineer",
+                    company: "Texas Instruments, Analog Devices, Maxim, NXP",
+                    salary: "₹15-45 LPA",
+                    skills: ["Analog Circuits", "Cadence", "Spice", "Layout", "Mixed-Signal", "RF"],
+                    badge: "Analog",
+                    type: "both",
+                    description: "Design analog and mixed-signal integrated circuits."
+                }
+            ],
+            "embedded": [
+                {
+                    id: "embedded-engineer",
+                    title: "Embedded Systems Engineer",
+                    company: "Bosch, Siemens, Honeywell, Philips",
+                    salary: "₹11-30 LPA",
+                    skills: ["C", "C++", "RTOS", "Microcontrollers", "Device Drivers", "Debugging"],
+                    badge: "Embedded",
+                    type: "coding",
+                    description: "Develop firmware and software for embedded systems and microcontrollers."
+                },
+                {
+                    id: "firmware-engineer",
+                    title: "Firmware Engineer",
+                    company: "Intel, AMD, Qualcomm, Broadcom",
+                    salary: "₹13-35 LPA",
+                    skills: ["C", "Assembly", "Embedded Linux", "Bootloaders", "Drivers", "Debugging"],
+                    badge: "Firmware",
+                    type: "coding",
+                    description: "Write low-level firmware for hardware devices and processors."
+                },
+                {
+                    id: "rtos-developer",
+                    title: "RTOS Developer",
+                    company: "Automotive, Aerospace, Medical Device Companies",
+                    salary: "₹14-38 LPA",
+                    skills: ["C", "RTOS", "Kernel", "Scheduling", "Memory Management", "Interrupts"],
+                    badge: "Real-Time",
+                    type: "coding",
+                    description: "Develop software for real-time operating systems and applications."
+                },
+                {
+                    id: "iot-embedded",
+                    title: "IoT Embedded Engineer",
+                    company: "Smart Home, Industrial IoT, Wearable Companies",
+                    salary: "₹12-32 LPA",
+                    skills: ["C", "Python", "Wireless Protocols", "Sensors", "Power Management", "Cloud"],
+                    badge: "IoT",
+                    type: "coding",
+                    description: "Develop embedded systems for Internet of Things applications."
+                },
+                {
+                    id: "autosar-engineer",
+                    title: "AUTOSAR Engineer",
+                    company: "Automotive OEMs, Tier-1 Suppliers",
+                    salary: "₹15-40 LPA",
+                    skills: ["C", "AUTOSAR", "CAN", "LIN", "UDS", "Embedded Systems"],
+                    badge: "Automotive",
+                    type: "coding",
+                    description: "Develop automotive software using AUTOSAR standards and methodologies."
+                }
+            ],
+            "signal-processing": [
+                {
+                    id: "dsp-engineer",
+                    title: "DSP Engineer",
+                    company: "Qualcomm, Texas Instruments, Analog Devices, Xilinx",
+                    salary: "₹14-38 LPA",
+                    skills: ["MATLAB", "C", "Python", "Digital Filters", "FFT", "Signal Analysis"],
+                    badge: "DSP",
+                    type: "coding",
+                    description: "Design and implement digital signal processing algorithms and systems."
+                },
+                {
+                    id: "image-processing",
+                    title: "Image Processing Engineer",
+                    company: "Medical Imaging, Surveillance, Camera Companies",
+                    salary: "₹13-35 LPA",
+                    skills: ["MATLAB", "Python", "OpenCV", "Computer Vision", "Algorithms", "Image Analysis"],
+                    badge: "Imaging",
+                    type: "coding",
+                    description: "Develop algorithms for image processing, enhancement, and analysis."
+                },
+                {
+                    id: "audio-engineer",
+                    title: "Audio DSP Engineer",
+                    company: "Bose, Sony, Harman, Dolby",
+                    salary: "₹15-42 LPA",
+                    skills: ["Audio Processing", "MATLAB", "C", "Acoustics", "Filters", "Codecs"],
+                    badge: "Audio",
+                    type: "coding",
+                    description: "Design audio processing algorithms for speakers, headphones, and systems."
+                },
+                {
+                    id: "radar-engineer",
+                    title: "Radar Signal Processing Engineer",
+                    company: "Defense, Aerospace, Automotive Radar Companies",
+                    salary: "₹16-45 LPA",
+                    skills: ["MATLAB", "Radar Systems", "Signal Processing", "Algorithms", "Simulation"],
+                    badge: "Radar",
+                    type: "coding",
+                    description: "Develop signal processing algorithms for radar systems and applications."
+                },
+                {
+                    id: "communications-dsp",
+                    title: "Communications DSP Engineer",
+                    company: "Ericsson, Nokia, Huawei, Samsung Networks",
+                    salary: "₹15-40 LPA",
+                    skills: ["MATLAB", "Wireless Communications", "OFDM", "MIMO", "Channel Coding", "5G"],
+                    badge: "Wireless",
+                    type: "coding",
+                    description: "Develop DSP algorithms for wireless communication systems."
+                }
+            ],
+            "communication": [
+                {
+                    id: "wireless-engineer",
+                    title: "Wireless Communication Engineer",
+                    company: "Qualcomm, Ericsson, Nokia, Huawei",
+                    salary: "₹14-40 LPA",
+                    skills: ["Wireless Protocols", "MATLAB", "Simulink", "5G", "LTE", "PHY Layer"],
+                    badge: "Wireless",
+                    type: "both",
+                    description: "Design and develop wireless communication systems and protocols."
+                },
+                {
+                    id: "5g-engineer",
+                    title: "5G Engineer",
+                    company: "Telecom Operators, Equipment Vendors, Chipmakers",
+                    salary: "₹16-45 LPA",
+                    skills: ["5G NR", "MATLAB", "System Design", "Protocol Stack", "Testing", "Optimization"],
+                    badge: "5G",
+                    type: "both",
+                    description: "Work on 5G network design, implementation, and optimization."
+                },
+                {
+                    id: "rf-engineer",
+                    title: "RF Engineer",
+                    company: "Qualcomm, Samsung, Apple, Broadcom",
+                    salary: "₹15-42 LPA",
+                    skills: ["RF Design", "Antennas", "Microwave", "Network Analyzer", "Simulation", "Testing"],
+                    badge: "RF",
+                    type: "both",
+                    description: "Design and test radio frequency circuits and systems."
+                },
+                {
+                    id: "network-engineer",
+                    title: "Network Engineer",
+                    company: "Cisco, Juniper, Arista, Nokia",
+                    salary: "₹12-35 LPA",
+                    skills: ["Networking Protocols", "TCP/IP", "Routing", "Switching", "Network Security", "Linux"],
+                    badge: "Networking",
+                    type: "both",
+                    description: "Design, implement, and maintain computer networks and infrastructure."
+                },
+                {
+                    id: "satellite-engineer",
+                    title: "Satellite Communication Engineer",
+                    company: "ISRO, SpaceX, OneWeb, Hughes",
+                    salary: "₹14-45 LPA",
+                    skills: ["Satellite Systems", "Link Budget", "Modulation", "Antennas", "Ground Stations", "MATLAB"],
+                    badge: "Satellite",
+                    type: "both",
+                    description: "Work on satellite communication systems and ground segment equipment."
+                }
+            ],
+            "iot-ece": [
+                {
+                    id: "iot-hardware",
+                    title: "IoT Hardware Engineer",
+                    company: "Smart Home, Industrial IoT, Wearable Companies",
+                    salary: "₹12-32 LPA",
+                    skills: ["PCB Design", "Sensors", "Microcontrollers", "Wireless", "Power Management", "Prototyping"],
+                    badge: "Hardware",
+                    type: "both",
+                    description: "Design and develop hardware for Internet of Things devices."
+                },
+                {
+                    id: "sensor-engineer",
+                    title: "Sensor Systems Engineer",
+                    company: "Bosch, Honeywell, Texas Instruments, STMicro",
+                    salary: "₹13-35 LPA",
+                    skills: ["Sensors", "Signal Conditioning", "Analog Design", "Calibration", "Testing", "PCB"],
+                    badge: "Sensors",
+                    type: "both",
+                    description: "Design and integrate sensor systems for various applications."
+                },
+                {
+                    id: "wireless-hardware",
+                    title: "Wireless Hardware Engineer",
+                    company: "WiFi, Bluetooth, Zigbee, LoRa Companies",
+                    salary: "₹14-38 LPA",
+                    skills: ["RF Design", "Antennas", "PCB Layout", "Wireless Protocols", "Testing", "Certification"],
+                    badge: "Wireless HW",
+                    type: "both",
+                    description: "Design wireless hardware modules for IoT and communication devices."
+                },
+                {
+                    id: "power-engineer",
+                    title: "Power Management Engineer",
+                    company: "Battery, Power Supply, Energy Harvesting Companies",
+                    salary: "₹13-36 LPA",
+                    skills: ["Power Electronics", "Battery Management", "DC-DC Converters", "Low Power Design", "Analog"],
+                    badge: "Power",
+                    type: "both",
+                    description: "Design power management systems for battery-operated IoT devices."
+                },
+                {
+                    id: "iot-test",
+                    title: "IoT Testing Engineer",
+                    company: "Test Labs, Certification Bodies, Product Companies",
+                    salary: "₹11-28 LPA",
+                    skills: ["Test Automation", "Wireless Testing", "Protocol Testing", "EMC", "Reliability", "Standards"],
+                    badge: "Testing",
+                    type: "both",
+                    description: "Test and certify IoT devices for functionality and compliance."
+                }
+            ],
+            // EEE Jobs
+            "power-systems": [
+                {
+                    id: "power-engineer-main",
+                    title: "Power Systems Engineer",
+                    company: "Siemens, ABB, GE, Schneider Electric",
+                    salary: "₹12-35 LPA",
+                    skills: ["Power Systems", "ETAP", "MATLAB", "Protection", "Load Flow", "Grid"],
+                    badge: "Core EEE",
+                    type: "non-coding",
+                    description: "Design, analyze, and maintain electrical power systems and grids."
+                },
+                {
+                    id: "protection-engineer",
+                    title: "Protection Engineer",
+                    company: "Power Utilities, Grid Operators, Equipment Manufacturers",
+                    salary: "₹13-38 LPA",
+                    skills: ["Relay Protection", "SCADA", "Fault Analysis", "Settings", "Testing", "Commissioning"],
+                    badge: "Protection",
+                    type: "non-coding",
+                    description: "Design and implement protection schemes for power systems."
+                },
+                {
+                    id: "grid-engineer",
+                    title: "Grid Planning Engineer",
+                    company: "Power Transmission Companies, Utilities",
+                    salary: "₹14-40 LPA",
+                    skills: ["Grid Planning", "Load Forecasting", "Capacity Planning", "ETAP", "Power Flow", "Stability"],
+                    badge: "Grid",
+                    type: "non-coding",
+                    description: "Plan and optimize electrical grid infrastructure and expansion."
+                },
+                {
+                    id: "substation-engineer",
+                    title: "Substation Design Engineer",
+                    company: "Engineering Consultants, EPC Companies",
+                    salary: "₹12-34 LPA",
+                    skills: ["Substation Design", "Equipment Selection", "Layout", "Protection", "AutoCAD", "ETAP"],
+                    badge: "Substation",
+                    type: "non-coding",
+                    description: "Design electrical substations and associated equipment."
+                },
+                {
+                    id: "power-quality",
+                    title: "Power Quality Engineer",
+                    company: "Utilities, Manufacturing Plants, Data Centers",
+                    salary: "₹13-36 LPA",
+                    skills: ["Harmonics", "Power Quality", "Filters", "Compensation", "Measurement", "Analysis"],
+                    badge: "Quality",
+                    type: "non-coding",
+                    description: "Analyze and improve power quality in electrical systems."
+                }
+            ],
+            "control-systems": [
+                {
+                    id: "control-engineer",
+                    title: "Control Systems Engineer",
+                    company: "Siemens, Rockwell, ABB, Honeywell",
+                    salary: "₹13-38 LPA",
+                    skills: ["MATLAB", "Simulink", "PLC", "PID", "System Modeling", "Optimization"],
+                    badge: "Control",
+                    type: "both",
+                    description: "Design and implement control systems for industrial processes."
+                },
+                {
+                    id: "plc-programmer",
+                    title: "PLC Programmer",
+                    company: "Automation Companies, Manufacturing, Process Industries",
+                    salary: "₹11-30 LPA",
+                    skills: ["Ladder Logic", "PLC", "SCADA", "HMI", "Industrial Protocols", "Commissioning"],
+                    badge: "PLC",
+                    type: "coding",
+                    description: "Program Programmable Logic Controllers for industrial automation."
+                },
+                {
+                    id: "robotics-engineer",
+                    title: "Robotics Engineer",
+                    company: "Automotive, Manufacturing, Logistics Companies",
+                    salary: "₹14-42 LPA",
+                    skills: ["Robotics", "MATLAB", "C++", "Motion Planning", "Control Algorithms", "Simulation"],
+                    badge: "Robotics",
+                    type: "coding",
+                    description: "Design control systems and algorithms for robotic applications."
+                },
+                {
+                    id: "scada-engineer",
+                    title: "SCADA Engineer",
+                    company: "Utilities, Oil & Gas, Water Treatment Plants",
+                    salary: "₹12-35 LPA",
+                    skills: ["SCADA", "HMI", "Industrial Networking", "RTU", "Protocols", "Commissioning"],
+                    badge: "SCADA",
+                    type: "both",
+                    description: "Design and implement Supervisory Control and Data Acquisition systems."
+                },
+                {
+                    id: "drones-control",
+                    title: "Drone Control Engineer",
+                    company: "Drone Manufacturers, Aerial Services, Defense",
+                    salary: "₹13-40 LPA",
+                    skills: ["Flight Control", "MATLAB", "C++", "Navigation", "Sensors", "Autonomy"],
+                    badge: "Drones",
+                    type: "coding",
+                    description: "Develop control systems for unmanned aerial vehicles (drones)."
+                }
+            ],
+            "renewable-energy": [
+                {
+                    id: "solar-engineer",
+                    title: "Solar Power Engineer",
+                    company: "Solar EPC Companies, Renewable Energy Firms",
+                    salary: "₹12-35 LPA",
+                    skills: ["Solar PV", "System Design", "Site Assessment", "Inverters", "Grid Integration", "Economics"],
+                    badge: "Solar",
+                    type: "non-coding",
+                    description: "Design and implement solar photovoltaic power systems."
+                },
+                {
+                    id: "wind-engineer",
+                    title: "Wind Power Engineer",
+                    company: "Wind Turbine Manufacturers, Wind Farms",
+                    salary: "₹13-38 LPA",
+                    skills: ["Wind Energy", "Turbine Technology", "Aerodynamics", "Grid Integration", "Maintenance", "Analysis"],
+                    badge: "Wind",
+                    type: "non-coding",
+                    description: "Design and optimize wind energy systems and turbines."
+                },
+                {
+                    id: "energy-storage",
+                    title: "Energy Storage Engineer",
+                    company: "Battery Companies, Grid Storage, EV Manufacturers",
+                    salary: "₹14-42 LPA",
+                    skills: ["Battery Systems", "Energy Storage", "Power Electronics", "BMS", "Grid Applications", "Testing"],
+                    badge: "Storage",
+                    type: "non-coding",
+                    description: "Design and develop energy storage systems and solutions."
+                },
+                {
+                    id: "microgrid-engineer",
+                    title: "Microgrid Engineer",
+                    company: "Utilities, Remote Locations, Military, Campuses",
+                    salary: "₹13-40 LPA",
+                    skills: ["Microgrids", "Renewable Integration", "Energy Management", "Control Systems", "Islanding", "Design"],
+                    badge: "Microgrid",
+                    type: "both",
+                    description: "Design and implement microgrid systems with renewable integration."
+                },
+                {
+                    id: "energy-analyst",
+                    title: "Energy Analyst",
+                    company: "Consulting Firms, Utilities, Government Agencies",
+                    salary: "₹11-32 LPA",
+                    skills: ["Energy Analysis", "Economics", "Modeling", "Sustainability", "Policy", "Reporting"],
+                    badge: "Analysis",
+                    type: "non-coding",
+                    description: "Analyze energy systems, efficiency, and renewable potential."
+                }
+            ],
+            "automation": [
+                {
+                    id: "industrial-automation",
+                    title: "Industrial Automation Engineer",
+                    company: "Siemens, ABB, Rockwell, Schneider",
+                    salary: "₹12-35 LPA",
+                    skills: ["PLC", "SCADA", "HMI", "Industrial Networks", "Instrumentation", "Commissioning"],
+                    badge: "Industry 4.0",
+                    type: "both",
+                    description: "Design and implement automation systems for industrial processes."
+                },
+                {
+                    id: "process-automation",
+                    title: "Process Automation Engineer",
+                    company: "Oil & Gas, Chemical, Pharmaceutical, Food Processing",
+                    salary: "₹13-38 LPA",
+                    skills: ["DCS", "PLC", "Instrumentation", "Process Control", "Safety Systems", "Commissioning"],
+                    badge: "Process",
+                    type: "both",
+                    description: "Automate chemical and industrial process operations."
+                },
+                {
+                    id: "building-automation",
+                    title: "Building Automation Engineer",
+                    company: "HVAC Companies, Smart Building Firms, Real Estate",
+                    salary: "₹11-30 LPA",
+                    skills: ["BAS", "HVAC Controls", "Lighting Control", "Security Systems", "Energy Management", "Integration"],
+                    badge: "Buildings",
+                    type: "both",
+                    description: "Design automation systems for commercial and residential buildings."
+                },
+                {
+                    id: "factory-automation",
+                    title: "Factory Automation Engineer",
+                    company: "Automotive, Electronics, Consumer Goods Manufacturers",
+                    salary: "₹12-34 LPA",
+                    skills: ["Robotics", "Conveyor Systems", "Assembly Lines", "Material Handling", "Testing Systems", "Integration"],
+                    badge: "Factory",
+                    type: "both",
+                    description: "Automate manufacturing processes and production lines."
+                },
+                {
+                    id: "test-automation-eee",
+                    title: "Test Automation Engineer",
+                    company: "Electronics Manufacturing, Automotive, Aerospace",
+                    salary: "₹13-36 LPA",
+                    skills: ["Test Systems", "LabVIEW", "Python", "Hardware Testing", "Data Acquisition", "Reporting"],
+                    badge: "Testing",
+                    type: "coding",
+                    description: "Develop automated testing systems for products and components."
+                }
+            ],
+            // Mechanical Jobs
+            "design": [
+                {
+                    id: "mechanical-designer",
+                    title: "Mechanical Design Engineer",
+                    company: "Automotive, Aerospace, Consumer Products, Industrial Equipment",
+                    salary: "₹10-30 LPA",
+                    skills: ["CAD", "SolidWorks", "CATIA", "GD&T", "DFMEA", "Prototyping"],
+                    badge: "Design",
+                    type: "non-coding",
+                    description: "Design mechanical components and systems using CAD software."
+                },
+                {
+                    id: "cad-engineer",
+                    title: "CAD Engineer",
+                    company: "Manufacturing, Engineering Services, Product Design Firms",
+                    salary: "₹8-25 LPA",
+                    skills: ["AutoCAD", "SolidWorks", "Creo", "NX", "2D Drafting", "3D Modeling"],
+                    badge: "CAD",
+                    type: "non-coding",
+                    description: "Create detailed engineering drawings and 3D models."
+                },
+                {
+                    id: "product-designer",
+                    title: "Product Design Engineer",
+                    company: "Consumer Electronics, Appliances, Furniture, Automotive",
+                    salary: "₹12-35 LPA",
+                    skills: ["Design Thinking", "CAD", "Prototyping", "Materials", "Manufacturing Processes", "Testing"],
+                    badge: "Product",
+                    type: "non-coding",
+                    description: "Design consumer and industrial products from concept to production."
+                },
+                {
+                    id: "mold-designer",
+                    title: "Mold Design Engineer",
+                    company: "Plastic Injection Molding, Die Casting Companies",
+                    salary: "₹11-32 LPA",
+                    skills: ["Mold Design", "SolidWorks", "Flow Analysis", "Tooling", "Manufacturing", "Validation"],
+                    badge: "Mold",
+                    type: "non-coding",
+                    description: "Design molds and tooling for manufacturing processes."
+                },
+                {
+                    id: "piping-designer",
+                    title: "Piping Design Engineer",
+                    company: "Oil & Gas, Chemical, Power Plants, HVAC",
+                    salary: "₹12-34 LPA",
+                    skills: ["Piping Design", "AutoCAD", "PDMS", "Stress Analysis", "Codes", "Layout"],
+                    badge: "Piping",
+                    type: "non-coding",
+                    description: "Design piping systems for industrial plants and facilities."
+                }
+            ],
+            "manufacturing": [
+                {
+                    id: "manufacturing-engineer",
+                    title: "Manufacturing Engineer",
+                    company: "Automotive, Electronics, Aerospace, Consumer Goods",
+                    salary: "₹10-28 LPA",
+                    skills: ["Process Planning", "Lean Manufacturing", "Six Sigma", "Quality Control", "Tooling", "Optimization"],
+                    badge: "Manufacturing",
+                    type: "non-coding",
+                    description: "Optimize manufacturing processes and production systems."
+                },
+                {
+                    id: "production-engineer",
+                    title: "Production Engineer",
+                    company: "Factories, Plants, Manufacturing Facilities",
+                    salary: "₹9-26 LPA",
+                    skills: ["Production Planning", "Efficiency", "Quality", "Maintenance", "Safety", "Team Management"],
+                    badge: "Production",
+                    type: "non-coding",
+                    description: "Manage production operations and ensure efficient manufacturing."
+                },
+                {
+                    id: "quality-engineer",
+                    title: "Quality Engineer",
+                    company: "Manufacturing, Automotive, Aerospace, Medical Devices",
+                    salary: "₹10-30 LPA",
+                    skills: ["Quality Systems", "SPC", "Six Sigma", "Auditing", "Inspection", "Root Cause Analysis"],
+                    badge: "Quality",
+                    type: "non-coding",
+                    description: "Ensure product quality and compliance with standards."
+                },
+                {
+                    id: "process-engineer",
+                    title: "Process Engineer",
+                    company: "Chemical, Pharmaceutical, Food Processing, Semiconductor",
+                    salary: "₹11-32 LPA",
+                    skills: ["Process Optimization", "Chemical Engineering", "Equipment Design", "Safety", "Validation", "Scale-up"],
+                    badge: "Process",
+                    type: "non-coding",
+                    description: "Design and optimize industrial manufacturing processes."
+                },
+                {
+                    id: "industrial-engineer",
+                    title: "Industrial Engineer",
+                    company: "Logistics, Warehousing, Retail, Service Industries",
+                    salary: "₹10-28 LPA",
+                    skills: ["Operations Research", "Work Study", "Layout Planning", "Supply Chain", "Efficiency", "Simulation"],
+                    badge: "Industrial",
+                    type: "non-coding",
+                    description: "Optimize complex systems and processes in various industries."
+                }
+            ],
+            "automotive": [
+                {
+                    id: "automotive-engineer",
+                    title: "Automotive Engineer",
+                    company: "Maruti, Tata Motors, Mahindra, Hyundai, Toyota",
+                    salary: "₹12-35 LPA",
+                    skills: ["Vehicle Design", "Chassis", "Suspension", "Transmission", "Testing", "Standards"],
+                    badge: "Automotive",
+                    type: "non-coding",
+                    description: "Design and develop automotive systems and components."
+                },
+                {
+                    id: "chassis-engineer",
+                    title: "Chassis Design Engineer",
+                    company: "Automotive OEMs, Tier-1 Suppliers",
+                    salary: "₹13-38 LPA",
+                    skills: ["Chassis Design", "Suspension", "Steering", "Brakes", "CAD", "Simulation"],
+                    badge: "Chassis",
+                    type: "non-coding",
+                    description: "Design vehicle chassis, suspension, and steering systems."
+                },
+                {
+                    id: "engine-calibration",
+                    title: "Engine Calibration Engineer",
+                    company: "Engine Manufacturers, Automotive Companies",
+                    salary: "₹14-42 LPA",
+                    skills: ["Engine Control", "Calibration", "Testing", "Emissions", "Performance", "Diagnostics"],
+                    badge: "Engine",
+                    type: "both",
+                    description: "Calibrate engine control systems for performance and emissions."
+                },
+                {
+                    id: "ev-engineer",
+                    title: "Electric Vehicle Engineer",
+                    company: "EV Startups, Traditional Automakers, Component Suppliers",
+                    salary: "₹15-45 LPA",
+                    skills: ["EV Systems", "Battery Packs", "Motor Control", "Power Electronics", "Charging", "Thermal Management"],
+                    badge: "EV",
+                    type: "both",
+                    description: "Design and develop electric vehicle systems and components."
+                },
+                {
+                    id: "nvh-engineer",
+                    title: "NVH Engineer",
+                    company: "Automotive, Aerospace, Appliance Manufacturers",
+                    salary: "₹13-40 LPA",
+                    skills: ["Noise Analysis", "Vibration", "Acoustics", "Testing", "Simulation", "Damping"],
+                    badge: "NVH",
+                    type: "non-coding",
+                    description: "Analyze and reduce noise, vibration, and harshness in products."
+                }
+            ],
+            "aerospace": [
+                {
+                    id: "aerospace-engineer",
+                    title: "Aerospace Engineer",
+                    company: "ISRO, DRDO, Airbus, Boeing, Lockheed Martin",
+                    salary: "₹14-45 LPA",
+                    skills: ["Aerodynamics", "Structures", "Propulsion", "CAD", "Simulation", "Testing"],
+                    badge: "Aerospace",
+                    type: "non-coding",
+                    description: "Design and develop aircraft, spacecraft, and related systems."
+                },
+                {
+                    id: "aerodynamics-engineer",
+                    title: "Aerodynamics Engineer",
+                    company: "Aircraft Manufacturers, Automotive, Wind Energy",
+                    salary: "₹15-50 LPA",
+                    skills: ["CFD", "Wind Tunnel", "Aerodynamics", "Simulation", "Analysis", "Optimization"],
+                    badge: "Aero",
+                    type: "non-coding",
+                    description: "Analyze and optimize aerodynamic performance of vehicles."
+                },
+                {
+                    id: "structures-engineer",
+                    title: "Structures Engineer",
+                    company: "Aerospace, Automotive, Construction",
+                    salary: "₹13-42 LPA",
+                    skills: ["FEA", "Stress Analysis", "Composite Materials", "Fatigue", "Testing", "Design"],
+                    badge: "Structures",
+                    type: "non-coding",
+                    description: "Design and analyze structural components and systems."
+                },
+                {
+                    id: "propulsion-engineer",
+                    title: "Propulsion Engineer",
+                    company: "Rocket Companies, Aircraft Engine Manufacturers",
+                    salary: "₹16-55 LPA",
+                    skills: ["Propulsion Systems", "Thermodynamics", "Fluid Mechanics", "Combustion", "Testing", "Simulation"],
+                    badge: "Propulsion",
+                    type: "non-coding",
+                    description: "Design and develop propulsion systems for aircraft and rockets."
+                },
+                {
+                    id: "avionics-engineer",
+                    title: "Avionics Engineer",
+                    company: "Aircraft Manufacturers, Defense, Space Agencies",
+                    salary: "₹14-48 LPA",
+                    skills: ["Avionics Systems", "Electronics", "Communication", "Navigation", "Testing", "Integration"],
+                    badge: "Avionics",
+                    type: "both",
+                    description: "Design and integrate electronic systems for aircraft."
+                }
+            ],
+            "robotics-mech": [
+                {
+                    id: "robotics-engineer-mech",
+                    title: "Robotics Engineer",
+                    company: "Automotive, Manufacturing, Logistics, Healthcare",
+                    salary: "₹14-42 LPA",
+                    skills: ["Robotics", "Kinematics", "Control Systems", "Programming", "Sensors", "Integration"],
+                    badge: "Robotics",
+                    type: "both",
+                    description: "Design, program, and integrate robotic systems."
+                },
+                {
+                    id: "motion-planning",
+                    title: "Motion Planning Engineer",
+                    company: "Autonomous Vehicles, Robotics, Gaming",
+                    salary: "₹15-45 LPA",
+                    skills: ["Algorithms", "C++", "Python", "Path Planning", "Collision Avoidance", "Optimization"],
+                    badge: "Planning",
+                    type: "coding",
+                    description: "Develop algorithms for robot motion planning and navigation."
+                },
+                {
+                    id: "robotic-vision",
+                    title: "Robotic Vision Engineer",
+                    company: "Manufacturing, Quality Inspection, Autonomous Systems",
+                    salary: "₹14-40 LPA",
+                    skills: ["Computer Vision", "Python", "OpenCV", "Machine Learning", "3D Vision", "Integration"],
+                    badge: "Vision",
+                    type: "coding",
+                    description: "Develop vision systems for robotic perception and guidance."
+                },
+                {
+                    id: "robot-programmer",
+                    title: "Robot Programmer",
+                    company: "Manufacturing Plants, Automation Integrators",
+                    salary: "₹12-35 LPA",
+                    skills: ["Robot Programming", "Offline Programming", "Simulation", "Cell Integration", "Safety", "Debugging"],
+                    badge: "Programming",
+                    type: "coding",
+                    description: "Program industrial robots for manufacturing applications."
+                },
+                {
+                    id: "mechatronics",
+                    title: "Mechatronics Engineer",
+                    company: "Automation, Robotics, Product Development",
+                    salary: "₹13-38 LPA",
+                    skills: ["Mechatronics", "Electronics", "Mechanics", "Control Systems", "Sensors", "Prototyping"],
+                    badge: "Mechatronics",
+                    type: "both",
+                    description: "Integrate mechanical, electronic, and software systems."
+                }
+            ],
+            // Civil Jobs
+            "structural": [
+                {
+                    id: "structural-engineer",
+                    title: "Structural Engineer",
+                    company: "Construction Firms, Consulting Engineers, Real Estate",
+                    salary: "₹10-35 LPA",
+                    skills: ["Structural Analysis", "ETABS", "STAAD Pro", "Concrete Design", "Steel Design", "Codes"],
+                    badge: "Structures",
+                    type: "non-coding",
+                    description: "Design and analyze building structures and foundations."
+                },
+                {
+                    id: "bridge-engineer",
+                    title: "Bridge Engineer",
+                    company: "Infrastructure Companies, Government Agencies, Consultants",
+                    salary: "₹12-38 LPA",
+                    skills: ["Bridge Design", "Analysis", "Inspection", "Rehabilitation", "Codes", "Software"],
+                    badge: "Bridges",
+                    type: "non-coding",
+                    description: "Design, analyze, and inspect bridges and transportation structures."
+                },
+                {
+                    id: "earthquake-engineer",
+                    title: "Earthquake Engineer",
+                    company: "Seismic Zones, High-Rise Buildings, Critical Infrastructure",
+                    salary: "₹13-40 LPA",
+                    skills: ["Seismic Design", "Dynamic Analysis", "Base Isolation", "Damping", "Codes", "Assessment"],
+                    badge: "Seismic",
+                    type: "non-coding",
+                    description: "Design structures to withstand earthquake forces."
+                },
+                {
+                    id: "tower-engineer",
+                    title: "Tower Design Engineer",
+                    company: "Telecom, Transmission, Wind Energy",
+                    salary: "₹11-34 LPA",
+                    skills: ["Tower Design", "Wind Analysis", "Foundation", "Steel Design", "Codes", "Software"],
+                    badge: "Towers",
+                    type: "non-coding",
+                    description: "Design communication towers, transmission towers, and masts."
+                },
+                {
+                    id: "façade-engineer",
+                    title: "Façade Engineer",
+                    company: "High-Rise Buildings, Architectural Firms, Construction",
+                    salary: "₹12-36 LPA",
+                    skills: ["Façade Design", "Glazing", "Cladding", "Waterproofing", "Thermal", "Structural"],
+                    badge: "Façade",
+                    type: "non-coding",
+                    description: "Design building envelopes and exterior wall systems."
+                }
+            ],
+            "construction": [
+                {
+                    id: "construction-manager",
+                    title: "Construction Manager",
+                    company: "Construction Companies, Real Estate Developers, Contractors",
+                    salary: "₹12-40 LPA",
+                    skills: ["Project Management", "Planning", "Cost Control", "Quality", "Safety", "Team Management"],
+                    badge: "Management",
+                    type: "non-coding",
+                    description: "Manage construction projects from planning to completion."
+                },
+                {
+                    id: "project-engineer",
+                    title: "Project Engineer",
+                    company: "Construction Sites, Infrastructure Projects",
+                    salary: "₹10-30 LPA",
+                    skills: ["Site Execution", "Coordination", "Quality Control", "Documentation", "Progress Reporting", "Problem Solving"],
+                    badge: "Execution",
+                    type: "non-coding",
+                    description: "Coordinate and supervise construction activities on site."
+                },
+                {
+                    id: "planning-engineer",
+                    title: "Planning Engineer",
+                    company: "Construction, Infrastructure, EPC Companies",
+                    salary: "₹11-35 LPA",
+                    skills: ["Project Planning", "Scheduling", "MS Project", "Primavera", "Progress Monitoring", "Reporting"],
+                    badge: "Planning",
+                    type: "non-coding",
+                    description: "Plan and schedule construction projects and activities."
+                },
+                {
+                    id: "quantity-surveyor",
+                    title: "Quantity Surveyor",
+                    company: "Construction, Real Estate, Consulting Firms",
+                    salary: "₹9-28 LPA",
+                    skills: ["Cost Estimation", "BOQ", "Billing", "Contracts", "Measurement", "Tendering"],
+                    badge: "Cost",
+                    type: "non-coding",
+                    description: "Manage costs and contracts for construction projects."
+                },
+                {
+                    id: "safety-engineer",
+                    title: "Safety Engineer",
+                    company: "Construction, Manufacturing, Oil & Gas",
+                    salary: "₹10-32 LPA",
+                    skills: ["Safety Management", "Risk Assessment", "Inspections", "Training", "Compliance", "Incident Investigation"],
+                    badge: "Safety",
+                    type: "non-coding",
+                    description: "Ensure safety compliance and practices on construction sites."
+                }
+            ],
+            "environmental": [
+                {
+                    id: "environmental-engineer",
+                    title: "Environmental Engineer",
+                    company: "Consulting Firms, Government, Waste Management",
+                    salary: "₹10-30 LPA",
+                    skills: ["Environmental Impact", "Water Treatment", "Waste Management", "Air Quality", "Regulations", "Remediation"],
+                    badge: "Environment",
+                    type: "non-coding",
+                    description: "Design solutions for environmental protection and sustainability."
+                },
+                {
+                    id: "water-engineer",
+                    title: "Water Resources Engineer",
+                    company: "Municipalities, Irrigation, Hydropower, Consulting",
+                    salary: "₹11-34 LPA",
+                    skills: ["Hydrology", "Hydraulics", "Water Supply", "Drainage", "Modeling", "Design"],
+                    badge: "Water",
+                    type: "non-coding",
+                    description: "Design and manage water resources and distribution systems."
+                },
+                {
+                    id: "wastewater-engineer",
+                    title: "Wastewater Engineer",
+                    company: "Municipalities, Industrial Plants, Consulting Firms",
+                    salary: "₹12-36 LPA",
+                    skills: ["Wastewater Treatment", "Design", "Operation", "Process Control", "Regulations", "Plant Design"],
+                    badge: "Wastewater",
+                    type: "non-coding",
+                    description: "Design and optimize wastewater treatment plants and systems."
+                },
+                {
+                    id: "sustainability-engineer",
+                    title: "Sustainability Engineer",
+                    company: "Green Building, Corporate Sustainability, Consulting",
+                    salary: "₹12-38 LPA",
+                    skills: ["Sustainability", "LEED", "Energy Efficiency", "Carbon Footprint", "Reporting", "Green Technologies"],
+                    badge: "Sustainability",
+                    type: "non-coding",
+                    description: "Develop and implement sustainability initiatives and practices."
+                },
+                {
+                    id: "air-quality",
+                    title: "Air Quality Engineer",
+                    company: "Manufacturing, Power Plants, Consulting, Government",
+                    salary: "₹11-35 LPA",
+                    skills: ["Air Pollution", "Monitoring", "Control Systems", "Modeling", "Permitting", "Compliance"],
+                    badge: "Air",
+                    type: "non-coding",
+                    description: "Monitor and control air pollution from industrial sources."
+                }
+            ],
+            "transportation": [
+                {
+                    id: "transportation-engineer",
+                    title: "Transportation Engineer",
+                    company: "Highway Authorities, Consulting Firms, Government",
+                    salary: "₹10-32 LPA",
+                    skills: ["Traffic Engineering", "Highway Design", "Transport Planning", "Modeling", "Simulation", "Safety"],
+                    badge: "Transport",
+                    type: "non-coding",
+                    description: "Design and plan transportation systems and infrastructure."
+                },
+                {
+                    id: "highway-engineer",
+                    title: "Highway Engineer",
+                    company: "Road Construction, Infrastructure, Government Agencies",
+                    salary: "₹11-35 LPA",
+                    skills: ["Highway Design", "Pavement", "Geometrics", "Drainage", "Materials", "Construction"],
+                    badge: "Highways",
+                    type: "non-coding",
+                    description: "Design and oversee construction of highways and roads."
+                },
+                {
+                    id: "traffic-engineer",
+                    title: "Traffic Engineer",
+                    company: "Municipalities, Consulting, Smart City Projects",
+                    salary: "₹10-30 LPA",
+                    skills: ["Traffic Analysis", "Signal Design", "Simulation", "Safety Studies", "Data Analysis", "ITS"],
+                    badge: "Traffic",
+                    type: "non-coding",
+                    description: "Design and optimize traffic flow and control systems."
+                },
+                {
+                    id: "railway-engineer",
+                    title: "Railway Engineer",
+                    company: "Railway Organizations, Metro Corporations, Consulting",
+                    salary: "₹12-38 LPA",
+                    skills: ["Railway Design", "Track Engineering", "Signaling", "Stations", "Systems Integration", "Safety"],
+                    badge: "Railways",
+                    type: "non-coding",
+                    description: "Design and develop railway systems and infrastructure."
+                },
+                {
+                    id: "airport-engineer",
+                    title: "Airport Engineer",
+                    company: "Airport Authorities, Aviation Consultants, Construction",
+                    salary: "₹13-40 LPA",
+                    skills: ["Airport Planning", "Runway Design", "Terminals", "Pavement", "Lighting", "Safety Systems"],
+                    badge: "Airports",
+                    type: "non-coding",
+                    description: "Design and plan airport facilities and infrastructure."
+                }
+            ],
+            // IT Jobs
+            "networking": [
+                {
+                    id: "network-engineer-it",
+                    title: "Network Engineer",
+                    company: "Cisco, Juniper, HPE, Dell, Telecom Companies",
+                    salary: "₹10-30 LPA",
+                    skills: ["Routing", "Switching", "Firewalls", "VPN", "Network Security", "Troubleshooting"],
+                    badge: "Networking",
+                    type: "both",
+                    description: "Design, implement, and maintain computer networks."
+                },
+                {
+                    id: "network-admin",
+                    title: "Network Administrator",
+                    company: "Enterprises, Data Centers, Service Providers",
+                    salary: "₹9-26 LPA",
+                    skills: ["Network Management", "Monitoring", "Configuration", "Troubleshooting", "Security", "Documentation"],
+                    badge: "Admin",
+                    type: "both",
+                    description: "Manage and maintain organizational network infrastructure."
+                },
+                {
+                    id: "wireless-network",
+                    title: "Wireless Network Engineer",
+                    company: "WiFi Companies, Enterprises, Service Providers",
+                    salary: "₹11-32 LPA",
+                    skills: ["Wireless Networks", "WiFi", "RF Planning", "Security", "Troubleshooting", "Site Surveys"],
+                    badge: "Wireless",
+                    type: "both",
+                    description: "Design and implement wireless network solutions."
+                },
+                {
+                    id: "network-security",
+                    title: "Network Security Engineer",
+                    company: "Security Companies, Enterprises, Financial Institutions",
+                    salary: "₹14-40 LPA",
+                    skills: ["Firewalls", "IDS/IPS", "VPN", "NAC", "Security Policies", "Incident Response"],
+                    badge: "Security",
+                    type: "both",
+                    description: "Secure network infrastructure against cyber threats."
+                },
+                {
+                    id: "cloud-network",
+                    title: "Cloud Network Engineer",
+                    company: "Cloud Providers, Enterprises, Service Providers",
+                    salary: "₹15-42 LPA",
+                    skills: ["AWS Networking", "Azure Networking", "SDN", "VPN", "Load Balancers", "Security Groups"],
+                    badge: "Cloud",
+                    type: "coding",
+                    description: "Design and implement networking in cloud environments."
+                }
+            ],
+            "database": [
+                {
+                    id: "dba",
+                    title: "Database Administrator",
+                    company: "Banks, Enterprises, E-commerce, Healthcare",
+                    salary: "₹12-35 LPA",
+                    skills: ["SQL", "Oracle", "MySQL", "Backup", "Recovery", "Performance Tuning"],
+                    badge: "DBA",
+                    type: "both",
+                    description: "Manage and maintain database systems and performance."
+                },
+                {
+                    id: "database-developer",
+                    title: "Database Developer",
+                    company: "Software Companies, Enterprises, Consulting",
+                    salary: "₹11-32 LPA",
+                    skills: ["SQL", "Stored Procedures", "ETL", "Data Modeling", "Optimization", "Reporting"],
+                    badge: "Development",
+                    type: "coding",
+                    description: "Design and develop database schemas and queries."
+                },
+                {
+                    id: "data-architect",
+                    title: "Data Architect",
+                    company: "Large Enterprises, Consulting Firms, Tech Companies",
+                    salary: "₹18-50 LPA",
+                    skills: ["Data Modeling", "Database Design", "Data Governance", "Big Data", "Cloud Databases", "Architecture"],
+                    badge: "Architecture",
+                    type: "both",
+                    description: "Design data architecture and database solutions."
+                },
+                {
+                    id: "nosql-dba",
+                    title: "NoSQL Database Administrator",
+                    company: "Tech Startups, Big Data Companies, Social Media",
+                    salary: "₹14-42 LPA",
+                    skills: ["MongoDB", "Cassandra", "Redis", "Couchbase", "Scaling", "Performance"],
+                    badge: "NoSQL",
+                    type: "coding",
+                    description: "Manage NoSQL databases for scalable applications."
+                },
+                {
+                    id: "data-engineer-db",
+                    title: "Data Engineer (Databases)",
+                    company: "Data-Driven Companies, Analytics Firms, E-commerce",
+                    salary: "₹15-40 LPA",
+                    skills: ["SQL", "Python", "ETL", "Data Pipelines", "Warehousing", "Cloud Databases"],
+                    badge: "Engineering",
+                    type: "coding",
+                    description: "Build and maintain data pipelines and database systems."
+                }
+            ],
+            "cyber-it": [
+                {
+                    id: "security-analyst-it",
+                    title: "Security Analyst",
+                    company: "Security Firms, Enterprises, Financial Services",
+                    salary: "₹14-35 LPA",
+                    skills: ["Security Monitoring", "Incident Response", "SIEM", "Threat Intelligence", "Vulnerability Management", "Forensics"],
+                    badge: "Analyst",
+                    type: "both",
+                    description: "Monitor and respond to security incidents and threats."
+                },
+                {
+                    id: "ethical-hacker",
+                    title: "Ethical Hacker",
+                    company: "Security Consulting, Penetration Testing Firms",
+                    salary: "₹15-45 LPA",
+                    skills: ["Penetration Testing", "Vulnerability Assessment", "Exploitation", "Reporting", "Tools", "Methodologies"],
+                    badge: "Hacking",
+                    type: "coding",
+                    description: "Legally hack systems to identify security vulnerabilities."
+                },
+                {
+                    id: "security-consultant",
+                    title: "Security Consultant",
+                    company: "Big 4, Security Firms, Independent Consultants",
+                    salary: "₹18-55 LPA",
+                    skills: ["Security Assessment", "Risk Management", "Compliance", "Strategy", "Client Management", "Reporting"],
+                    badge: "Consulting",
+                    type: "both",
+                    description: "Advise organizations on security strategy and implementation."
+                },
+                {
+                    id: "soc-analyst",
+                    title: "SOC Analyst",
+                    company: "Security Operations Centers, Managed Security Services",
+                    salary: "₹12-32 LPA",
+                    skills: ["Security Monitoring", "Alert Analysis", "Incident Triage", "SIEM", "Threat Hunting", "Escalation"],
+                    badge: "SOC",
+                    type: "both",
+                    description: "Monitor security events in Security Operations Centers."
+                },
+                {
+                    id: "security-engineer",
+                    title: "Security Engineer",
+                    company: "Tech Companies, Enterprises, Security Vendors",
+                    salary: "₹16-48 LPA",
+                    skills: ["Security Architecture", "Tool Implementation", "Automation", "Incident Response", "Threat Modeling", "Hardening"],
+                    badge: "Engineering",
+                    type: "coding",
+                    description: "Design and implement security solutions and controls."
+                }
+            ],
+            "cloud-it": [
+                {
+                    id: "cloud-architect-it",
+                    title: "Cloud Architect",
+                    company: "Cloud Providers, Enterprises, Consulting",
+                    salary: "₹20-60 LPA",
+                    skills: ["Cloud Architecture", "Design Patterns", "Cost Optimization", "Security", "Migration", "Multi-cloud"],
+                    badge: "Architecture",
+                    type: "coding",
+                    description: "Design cloud solutions and migration strategies."
+                },
+                {
+                    id: "cloud-developer",
+                    title: "Cloud Developer",
+                    company: "SaaS Companies, Enterprises, Startups",
+                    salary: "₹14-40 LPA",
+                    skills: ["AWS/Azure/GCP", "Serverless", "Containers", "APIs", "Microservices", "DevOps"],
+                    badge: "Development",
+                    type: "coding",
+                    description: "Develop applications specifically for cloud platforms."
+                },
+                {
+                    id: "solutions-architect",
+                    title: "Solutions Architect",
+                    company: "AWS, Azure, Google Cloud, Consulting Partners",
+                    salary: "₹25-70 LPA",
+                    skills: ["Solution Design", "Customer Engagement", "Technical Sales", "Architecture", "Best Practices", "Costing"],
+                    badge: "Solutions",
+                    type: "both",
+                    description: "Design technical solutions for customer business problems."
+                },
+                {
+                    id: "cloud-devops",
+                    title: "Cloud DevOps Engineer",
+                    company: "Tech Companies, Enterprises, Startups",
+                    salary: "₹16-45 LPA",
+                    skills: ["CI/CD", "Infrastructure as Code", "Containerization", "Monitoring", "Automation", "Cloud Services"],
+                    badge: "DevOps",
+                    type: "coding",
+                    description: "Implement DevOps practices in cloud environments."
+                },
+                {
+                    id: "cloud-data-engineer",
+                    title: "Cloud Data Engineer",
+                    company: "Data Companies, Enterprises, Analytics Firms",
+                    salary: "₹18-50 LPA",
+                    skills: ["Big Data", "Data Lakes", "ETL", "Data Warehousing", "Streaming", "Cloud Data Services"],
+                    badge: "Data",
+                    type: "coding",
+                    description: "Build data processing systems on cloud platforms."
+                }
+            ],
+            "it-support": [
+                {
+                    id: "it-support-engineer",
+                    title: "IT Support Engineer",
+                    company: "Enterprises, MSPs, Service Desks",
+                    salary: "₹6-18 LPA",
+                    skills: ["Technical Support", "Troubleshooting", "Windows/Linux", "Networking", "Hardware", "Customer Service"],
+                    badge: "Support",
+                    type: "non-coding",
+                    description: "Provide technical support and troubleshooting for IT systems."
+                },
+                {
+                    id: "helpdesk-analyst",
+                    title: "Helpdesk Analyst",
+                    company: "Service Desks, Enterprises, Outsourcing",
+                    salary: "₹5-16 LPA",
+                    skills: ["Ticket Management", "User Support", "Documentation", "Communication", "Problem Solving", "Escalation"],
+                    badge: "Helpdesk",
+                    type: "non-coding",
+                    description: "Handle user IT support requests and incidents."
+                },
+                {
+                    id: "desktop-support",
+                    title: "Desktop Support Engineer",
+                    company: "Enterprises, Educational Institutions, Government",
+                    salary: "₹7-20 LPA",
+                    skills: ["Desktop OS", "Hardware", "Software Installation", "Printers", "Mobile Devices", "Troubleshooting"],
+                    badge: "Desktop",
+                    type: "non-coding",
+                    description: "Support desktop computers, laptops, and peripherals."
+                },
+                {
+                    id: "system-admin",
+                    title: "System Administrator",
+                    company: "Enterprises, Data Centers, Service Providers",
+                    salary: "₹10-30 LPA",
+                    skills: ["Windows Server", "Linux", "Active Directory", "Virtualization", "Backup", "Monitoring"],
+                    badge: "SysAdmin",
+                    type: "both",
+                    description: "Administer and maintain server and system infrastructure."
+                },
+                {
+                    id: "it-manager",
+                    title: "IT Manager",
+                    company: "Enterprises, Organizations, Departments",
+                    salary: "₹18-60 LPA",
+                    skills: ["Team Management", "Budgeting", "Strategy", "Vendor Management", "Project Management", "Policy"],
+                    badge: "Management",
+                    type: "non-coding",
+                    description: "Manage IT operations, teams, and strategy."
+                }
+            ]
+        };
+
+        // Job Details for ALL jobs
+        const jobDetails = {
+            "ml-engineer": {
+                title: "Machine Learning Engineer",
+                company: "Google, Microsoft, Amazon, NVIDIA",
+                salary: "₹18-45 LPA",
+                experience: "0-5 years",
+                location: "Bangalore, Hyderabad, Pune, Remote",
+                
+                skills: [
+                    { name: "Python Programming", level: "Advanced" },
+                    { name: "TensorFlow/PyTorch", level: "Advanced" },
+                    { name: "Machine Learning Algorithms", level: "Expert" },
+                    { name: "Data Structures & Algorithms", level: "Advanced" },
+                    { name: "Statistics & Probability", level: "Advanced" },
+                    { name: "Cloud Platforms (AWS/GCP/Azure)", level: "Intermediate" },
+                    { name: "Deep Learning", level: "Advanced" },
+                    { name: "SQL & Databases", level: "Intermediate" }
+                ],
+                
+                eligibility: [
+                    "Bachelor's/Master's in CSE/IT/ECE or related field",
+                    "Strong foundation in mathematics and statistics",
+                    "Experience with ML frameworks (TensorFlow, PyTorch, Scikit-learn)",
+                    "Portfolio of ML projects (GitHub)",
+                    "Good problem-solving and analytical skills",
+                    "Knowledge of software engineering best practices"
+                ],
+                
+                preparation: [
+                    "Complete Coursera's Machine Learning Specialization by Andrew Ng",
+                    "Build 3-4 end-to-end ML projects with deployment",
+                    "Practice coding problems on LeetCode (focus on data structures)",
+                    "Learn MLOps tools (Docker, Kubernetes, MLflow)",
+                    "Participate in Kaggle competitions",
+                    "Contribute to open-source ML projects",
+                    "Prepare for system design interviews"
+                ],
+                
+                process: [
+                    "Online Application & Resume Screening",
+                    "Online Assessment (Coding + ML problems)",
+                    "Technical Phone Screen (1-2 rounds)",
+                    "On-site/Virtual Interviews (3-5 rounds)",
+                    "Machine Learning System Design Round",
+                    "Behavioral & HR Interview",
+                    "Offer Letter & Negotiation"
+                ],
+                
+                syllabus: [
+                    "Linear Algebra & Calculus for ML",
+                    "Probability & Statistics",
+                    "Supervised Learning (Regression, Classification)",
+                    "Unsupervised Learning (Clustering, Dimensionality Reduction)",
+                    "Neural Networks & Deep Learning",
+                    "Natural Language Processing (NLP)",
+                    "Computer Vision (CV)",
+                    "Reinforcement Learning",
+                    "ML System Design & Deployment"
+                ],
+                
+                questions: [
+                    "Explain gradient descent and its variants (SGD, Adam)",
+                    "What is overfitting and how do you prevent it?",
+                    "Difference between CNN and RNN - when to use each?",
+                    "Explain attention mechanism in transformers",
+                    "How would you deploy an ML model at scale?",
+                    "Explain bias-variance tradeoff",
+                    "What are regularization techniques in ML?"
+                ],
+                
+                codingProblems: [
+                    {
+                        title: "Implement Linear Regression from Scratch",
+                        description: "Write a Python class that implements linear regression using gradient descent without using scikit-learn.",
+                        solution: `class LinearRegression:
+    def __init__(self, learning_rate=0.01, n_iterations=1000):
+        self.lr = learning_rate
+        self.n_iters = n_iterations
+        self.weights = None
+        self.bias = None
+    
+    def fit(self, X, y):
+        n_samples, n_features = X.shape
+        self.weights = np.zeros(n_features)
+        self.bias = 0
+        
+        for _ in range(self.n_iters):
+            y_pred = np.dot(X, self.weights) + self.bias
+            dw = (1/n_samples) * np.dot(X.T, (y_pred - y))
+            db = (1/n_samples) * np.sum(y_pred - y)
+            
+            self.weights -= self.lr * dw
+            self.bias -= self.lr * db
+    
+    def predict(self, X):
+        return np.dot(X, self.weights) + self.bias`
+                    }
+                ]
+            }
+        };
+
+        // Function to generate default job details
+        function generateDefaultJobDetails(jobId, job) {
+            return {
+                title: job.title || "Job Position",
+                company: job.company || "Various Companies",
+                salary: job.salary || "Competitive Salary",
+                experience: "0-5 years",
+                location: "Multiple Locations",
+                
+                skills: job.skills ? job.skills.map(skill => ({ name: skill, level: "Required" })) : [
+                    { name: "Relevant Technical Skills", level: "Varies" },
+                    { name: "Problem Solving", level: "Important" },
+                    { name: "Communication", level: "Essential" }
+                ],
+                
+                eligibility: [
+                    "Relevant educational background in the field",
+                    "Technical skills as specified in job requirements",
+                    "Good problem-solving and analytical abilities",
+                    "Teamwork and collaboration skills",
+                    "Strong work ethic and professionalism"
+                ],
+                
+                preparation: [
+                    "Build strong technical foundation in required areas",
+                    "Practice problem-solving and analytical thinking",
+                    "Prepare your resume and portfolio showcasing relevant work",
+                    "Practice mock interviews and communication skills",
+                    "Stay updated with industry trends and technologies"
+                ],
+                
+                process: [
+                    "Online Application & Resume Submission",
+                    "Initial Screening & Shortlisting",
+                    "Technical Assessment/Test",
+                    "Technical Interviews (1-2 rounds)",
+                    "HR/Behavioral Interview",
+                    "Final Offer Discussion & Negotiation"
+                ],
+                
+                syllabus: [
+                    "Core technical concepts relevant to the role",
+                    "Industry-specific knowledge and best practices",
+                    "Problem-solving techniques and methodologies",
+                    "Communication and presentation skills",
+                    "Team collaboration and project management"
+                ],
+                
+                questions: [
+                    "Technical questions specific to the job role",
+                    "Problem-solving scenarios and case studies",
+                    "Behavioral questions about teamwork and challenges",
+                    "Situational questions about handling work scenarios",
+                    "Questions about your experience and projects"
+                ],
+                
+                codingProblems: job.type === "coding" || job.type === "both" ? [
+                    {
+                        title: "Basic Programming Problem",
+                        description: "Solve a typical programming problem relevant to this field.",
+                        solution: `// Example solution structure
+function solveProblem(input) {
+    // Implement your solution here
+    // This would be specific to the job role
+    return result;
+}
+
+// Test cases would go here
+console.log(solveProblem(testInput));`
+                    }
+                ] : []
+            };
+        }
+
+        // DOM Elements
+        const branchSelection = document.getElementById('branchSelection');
+        const branchesGrid = document.getElementById('branchesGrid');
+        const specializationJobSection = document.getElementById('specializationJobSection');
+        const backBtn = document.getElementById('backBtn');
+        const changeBranchBtn = document.getElementById('changeBranchBtn');
+        const selectedBranchName = document.getElementById('selectedBranchName');
+        const selectedBranchIcon = document.getElementById('selectedBranchIcon');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const specializationsGrid = document.getElementById('specializationsGrid');
+        const jobListingsContainer = document.getElementById('jobListingsContainer');
+        const currentSpecialization = document.getElementById('currentSpecialization');
+        const jobCount = document.getElementById('jobCount');
+        const jobCardsGrid = document.getElementById('jobCardsGrid');
+        const jobDetailsModal = document.getElementById('jobDetailsModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalJobTitle = document.getElementById('modalJobTitle');
+        const modalJobCompany = document.getElementById('modalJobCompany');
+        const modalBody = document.getElementById('modalBody');
+        const dashboardBtn = document.getElementById('dashboardBtn');
+
+        // Initialize
+        function init() {
+            loadBranches();
+            setupEventListeners();
+        }
+
+        // Load branches
+        function loadBranches() {
+            const branches = ['cse', 'ece', 'eee', 'mechanical', 'civil', 'it'];
+            
+            branches.forEach((branchKey, index) => {
+                const branch = branchData[branchKey];
+                const card = document.createElement('div');
+                card.className = 'branch-card';
+                card.setAttribute('data-branch', branchKey);
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="branch-icon ${branchKey}">
+                        <i class="${branch.icon}"></i>
+                    </div>
+                    <h2 class="branch-name">${branchKey.toUpperCase()}</h2>
+                    <div class="branch-fullname">${branch.name}</div>
+                    <p class="branch-description">${branch.description}</p>
+                    <div class="branch-stats">
+                        <div class="stat">
+                            <span class="stat-number">${branch.specializations.length}</span>
+                            <span class="stat-label">Specializations</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Companies</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">₹8-45L</span>
+                            <span class="stat-label">Salary Range</span>
+                        </div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => selectBranch(branchKey));
+                branchesGrid.appendChild(card);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Category filter buttons
+            categoryButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedCategory = btn.getAttribute('data-category');
+                    loadJobs();
+                });
+            });
+
+            // Back button
+            backBtn.addEventListener('click', () => {
+                showBranchSelection();
+            });
+
+            // Change branch button
+            changeBranchBtn.addEventListener('click', () => {
+                showBranchSelection();
+            });
+
+            // Modal close
+            modalClose.addEventListener('click', () => {
+                jobDetailsModal.style.display = 'none';
+            });
+
+            // Close modal on outside click
+            jobDetailsModal.addEventListener('click', (e) => {
+                if (e.target === jobDetailsModal) {
+                    jobDetailsModal.style.display = 'none';
+                }
+            });
+
+            // Dashboard button
+            dashboardBtn.addEventListener('click', () => {
+                alert('Redirecting to Dashboard...');
+            });
+
+            // Escape key to close modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && jobDetailsModal.style.display === 'flex') {
+                    jobDetailsModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Select branch
+        function selectBranch(branchKey) {
+            selectedBranch = branchKey;
+            const branch = branchData[branchKey];
+            
+            // Update UI
+            selectedBranchName.textContent = branch.name;
+            selectedBranchIcon.className = `branch-icon ${branchKey}`;
+            selectedBranchIcon.innerHTML = `<i class="${branch.icon}"></i>`;
+            selectedBranchIcon.style.background = branch.color;
+            
+            // Show specialization section
+            showSpecializationSection();
+            
+            // Load specializations
+            loadSpecializations();
+            
+            // Show back button
+            backBtn.style.display = 'flex';
+        }
+
+        // Show branch selection
+        function showBranchSelection() {
+            branchSelection.style.display = 'block';
+            specializationJobSection.style.display = 'none';
+            backBtn.style.display = 'none';
+            selectedBranch = null;
+            selectedSpecialization = null;
+        }
+
+        // Show specialization section
+        function showSpecializationSection() {
+            branchSelection.style.display = 'none';
+            specializationJobSection.style.display = 'block';
+            
+            // Reset category
+            categoryButtons.forEach(btn => {
+                if (btn.getAttribute('data-category') === 'all') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            selectedCategory = 'all';
+            
+            // Reset specialization selection
+            selectedSpecialization = null;
+            currentSpecialization.textContent = 'All Specializations';
+            
+            // Load initial jobs (all specializations)
+            loadJobs();
+        }
+
+        // Load specializations
+        function loadSpecializations() {
+            const branch = branchData[selectedBranch];
+            specializationsGrid.innerHTML = '';
+            
+            branch.specializations.forEach((spec, index) => {
+                const card = document.createElement('div');
+                card.className = 'specialization-card';
+                card.setAttribute('data-specialization', spec.id);
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="specialization-icon">
+                        <i class="${spec.icon}"></i>
+                    </div>
+                    <div class="specialization-name">${spec.name}</div>
+                    <div class="specialization-type">${spec.type === 'both' ? 'Coding & Non-Coding' : spec.type + ' Jobs'}</div>
+                `;
+                
+                card.addEventListener('click', () => selectSpecialization(spec));
+                specializationsGrid.appendChild(card);
+            });
+        }
+
+        // Select specialization
+        function selectSpecialization(spec) {
+            selectedSpecialization = spec.id;
+            
+            // Update UI
+            document.querySelectorAll('.specialization-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            currentSpecialization.textContent = spec.name;
+            
+            // Load jobs for this specialization
+            loadJobs();
+        }
+
+        // Load jobs
+        function loadJobs() {
+            let jobs = [];
+            
+            if (selectedSpecialization) {
+                // Get jobs for specific specialization
+                jobs = jobData[selectedSpecialization] || [];
+            } else {
+                // Get all jobs for the selected branch
+                const branch = branchData[selectedBranch];
+                branch.specializations.forEach(spec => {
+                    const specJobs = jobData[spec.id] || [];
+                    jobs = [...jobs, ...specJobs];
+                });
+            }
+            
+            // Filter by category
+            if (selectedCategory !== 'all') {
+                jobs = jobs.filter(job => job.type === selectedCategory || job.type === 'both');
+            }
+            
+            // Update job count
+            jobCount.textContent = `${jobs.length} Jobs Found`;
+            
+            // Clear grid
+            jobCardsGrid.innerHTML = '';
+            
+            // Display jobs
+            if (jobs.length === 0) {
+                jobCardsGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: var(--medium-gray);">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <h3 style="margin-bottom: 10px;">No jobs found</h3>
+                        <p>Try selecting a different category or specialization</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            jobs.forEach((job, index) => {
+                const card = document.createElement('div');
+                card.className = 'job-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <span class="job-badge">${job.badge}</span>
+                    <h3 class="job-title">${job.title}</h3>
+                    <p class="job-company"><i class="fas fa-building"></i> ${job.company}</p>
+                    <p class="job-salary"><i class="fas fa-money-bill-wave"></i> ${job.salary}</p>
+                    <p style="color: var(--medium-gray); margin-bottom: 20px;">${job.description}</p>
+                    <div class="job-skills">
+                        ${job.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    </div>
+                    <button class="view-details-btn" data-job="${job.id}">
+                        <i class="fas fa-eye"></i>
+                        View Complete Details
+                    </button>
+                `;
+                
+                jobCardsGrid.appendChild(card);
+            });
+            
+            // Add event listeners to view details buttons
+            document.querySelectorAll('.view-details-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const jobId = e.target.getAttribute('data-job');
+                    showJobDetails(jobId);
+                });
+            });
+        }
+
+        // Show job details
+        function showJobDetails(jobId) {
+            // Find the job in the current specialization
+            let currentJobs = [];
+            if (selectedSpecialization) {
+                currentJobs = jobData[selectedSpecialization] || [];
+            } else {
+                // Search through all specializations
+                for (const spec in jobData) {
+                    currentJobs = currentJobs.concat(jobData[spec] || []);
+                }
+            }
+            
+            // Find the specific job
+            const job = currentJobs.find(j => j.id === jobId);
+            
+            if (!job) {
+                alert('Job details not found!');
+                return;
+            }
+            
+            // Get details - either from jobDetails or generate default
+            let details = jobDetails[jobId] || generateDefaultJobDetails(jobId, job);
+            
+            // Update modal header
+            modalJobTitle.textContent = job.title;
+            modalJobCompany.textContent = job.company;
+            
+            // Update modal body
+            let codingProblemsHTML = '';
+            if (details.codingProblems && details.codingProblems.length > 0) {
+                codingProblemsHTML = `
+                <div class="coding-problems">
+                    <h3 class="details-card-title"><i class="fas fa-code"></i> Coding Problems & Examples</h3>
+                    ${details.codingProblems.map(problem => `
+                        <div class="coding-problem">
+                            <div class="problem-title">${problem.title}</div>
+                            <div class="problem-description">${problem.description}</div>
+                            <pre class="code-snippet">${problem.solution}</pre>
+                        </div>
+                    `).join('')}
+                </div>
+                `;
+            }
+            
+            modalBody.innerHTML = `
+                <div class="details-grid">
+                    <div class="details-card">
+                        <h3 class="details-card-title"><i class="fas fa-tools"></i> Required Skills & Competencies</h3>
+                        <div class="skills-container">
+                            ${details.skills.map(skill => `
+                                <div class="skill-item">
+                                    <div class="skill-name">${skill.name}</div>
+                                    <div class="skill-level">${skill.level}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="details-card">
+                        <h3 class="details-card-title"><i class="fas fa-graduation-cap"></i> Eligibility Criteria</h3>
+                        <ul class="details-list">
+                            ${details.eligibility.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="details-card">
+                        <h3 class="details-card-title"><i class="fas fa-road"></i> Preparation Roadmap</h3>
+                        <ul class="details-list">
+                            ${details.preparation.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="details-card">
+                        <h3 class="details-card-title"><i class="fas fa-clipboard-list"></i> Selection Process</h3>
+                        <ul class="details-list">
+                            ${details.process.map((item, index) => `
+                                <li><strong>Step ${index + 1}:</strong> ${item}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="details-card">
+                    <h3 class="details-card-title"><i class="fas fa-book"></i> Syllabus & Topics to Master</h3>
+                    <ul class="details-list">
+                        ${details.syllabus.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="details-card">
+                    <h3 class="details-card-title"><i class="fas fa-question-circle"></i> Common Interview Questions</h3>
+                    <ul class="details-list interview-questions">
+                        ${details.questions.map((q, index) => `
+                            <li><strong>Q${index + 1}:</strong> ${q}</li>
+                        `).join('')}
+                    </ul>
+                </div>
+                
+                ${codingProblemsHTML}
+                
+                <div style="margin-top: 30px; padding: 25px; background: var(--light-blue); border-radius: 12px;">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-lightbulb"></i> Pro Tips & Career Guidance
+                    </h3>
+                    <ul style="color: var(--medium-gray); line-height: 1.7; padding-left: 20px;">
+                        <li><strong>Start Early:</strong> Begin preparation at least 6-8 months before placements</li>
+                        <li><strong>Build Portfolio:</strong> Create 3-5 quality projects showcasing your skills</li>
+                        <li><strong>Practice Regularly:</strong> Solve problems daily on platforms like LeetCode, HackerRank</li>
+                        <li><strong>Mock Interviews:</strong> Practice with peers or use platforms like Pramp</li>
+                        <li><strong>Networking:</strong> Connect with professionals on LinkedIn and attend industry events</li>
+                        <li><strong>Stay Updated:</strong> Follow industry blogs, podcasts, and news</li>
+                        <li><strong>Soft Skills:</strong> Develop communication, teamwork, and problem-solving abilities</li>
+                    </ul>
+                </div>
+            `;
+            
+            // Show modal
+            jobDetailsModal.style.display = 'flex';
+            
+            // Scroll to top of modal
+            document.querySelector('.modal-content').scrollTop = 0;
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
